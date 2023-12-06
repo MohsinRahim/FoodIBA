@@ -1,0 +1,35 @@
+.flex-container {
+    display: flex;
+}
+
+.flex-child {
+    flex: 1;
+    /* border: 2px solid yellow; */
+}  
+
+.flex-child:first-child {
+    margin-right: 20px;
+} 
+
+/* ImagesGrid.css */
+
+/* ImagesGrid.css */
+
+/* ImagesGrid.css */
+
+.images-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 100px); /* Creates 4 columns, each 100px wide */
+    grid-gap: 10px; /* Space between the images */
+  }
+  
+  .image-item {
+    width: 100px; /* Fixed width for each image */
+    height: 100px; /* Fixed height for each image to maintain square shape */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 2px solid #000; /* Black border around each image */
+    box-sizing: border-box; /* Include the border in the element's total size */
+  }
+  
