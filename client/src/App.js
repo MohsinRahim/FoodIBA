@@ -3,10 +3,10 @@ import { BrowserRouter as Router, Route, Routes, Navigate  } from 'react-router-
 
 import LoginPage from './Pages/LoginPage';  // Adjust the path if needed
 import ProfilePage from './Pages/ProfilePage';  // Adjust the path if needed
-import FriendsPage from './Pages/FriendsPage';
-import ChallengePage from './Pages/ChallengePage';  // Adjust the path if needed
-import CreateChallengePage from './Pages/CreateChallengePage';
-import ListChallengesPage from './Pages/ListChallengesPage';
+// import FriendsPage from './Pages/FriendsPage';
+// import ChallengePage from './Pages/ChallengePage';  // Adjust the path if needed
+// import CreateChallengePage from './Pages/CreateChallengePage';
+// import ListChallengesPage from './Pages/ListChallengesPage';
 import UserContext from './UserContext';  // import UserContext
 
 
@@ -38,15 +38,15 @@ function App() {
               </PrivateRoute>
             } 
           />
-  <Route 
+  {/* <Route 
     path="/friends" 
     element={
       <PrivateRoute>
         <FriendsPage />
       </PrivateRoute>
     } 
-  />
-  <Route 
+  /> */}
+  {/* <Route 
     path="/createchallenge" 
     element={
       <PrivateRoute>
@@ -69,7 +69,7 @@ function App() {
       <ChallengePage />
     </PrivateRoute>
   } 
-/>
+/> */}
   <Route 
     path="/login" 
     element={
