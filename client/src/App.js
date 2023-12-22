@@ -99,6 +99,7 @@ import Cart from './Pages/Cart'; // Import the Cart page
 import Checkout from './Pages/Checkout'; // Import the Checkout page
 import UserContext from './UserContext';
 import PublicRoute from './Routes/PublicRoute';
+import RestMenu from './Pages/Rest_Menu';
 
 function App() {
   const token = localStorage.getItem('token');
@@ -114,6 +115,14 @@ function App() {
             element={
               <PublicRoute redirectTo="/profile">
                 <Home />
+              </PublicRoute>
+            } 
+          />
+          <Route 
+            path="/restmenu"
+            element={
+              <PublicRoute redirectTo="/profile">
+                <RestMenu />
               </PublicRoute>
             } 
           />
