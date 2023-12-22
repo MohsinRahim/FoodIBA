@@ -1,4 +1,4 @@
-// Components/Rest_Menu/EditItemDialog.jsx
+// Components/Rest_Menu/EditItemDialog.jsx (EDITED)
 import React, { useState } from 'react';
 import {
   Dialog,
@@ -29,7 +29,7 @@ const EditItemDialog = ({ open, handleClose, handleSubmit, currentItem }) => {
 
   return (
     <Dialog open={open} onClose={handleClose}>
-      <DialogTitle>{currentItem ? 'Edit Item' : 'Add Item'}</DialogTitle>
+      <DialogTitle>{currentItem ? 'Edit Item' : 'Add Item/Deal'}</DialogTitle>
       <DialogContent>
         <TextField
           label="Name"
@@ -45,7 +45,7 @@ const EditItemDialog = ({ open, handleClose, handleSubmit, currentItem }) => {
           fullWidth
         />
         <TextField
-          label="Description"
+          label="Description (for deals)"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           fullWidth
@@ -54,7 +54,7 @@ const EditItemDialog = ({ open, handleClose, handleSubmit, currentItem }) => {
       <DialogActions>
         <Button onClick={handleClose}>Cancel</Button>
         <Button onClick={handleFormSubmit} color="primary">
-          {currentItem ? 'Save Changes' : 'Add Item'}
+          {currentItem ? 'Save Changes' : 'Add Item/Deal'}
         </Button>
       </DialogActions>
     </Dialog>
