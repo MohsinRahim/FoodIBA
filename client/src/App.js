@@ -7,6 +7,9 @@ import Menu from './Pages/Menu';
 import Cart from './Pages/Cart';
 import Checkout from './Pages/Checkout';
 import UserContext from './UserContext';
+
+import History from './Pages/History';
+
 import PublicRoute from './Routes/PublicRoute';
 import RestMenu from './Pages/Rest_Menu';
 import Orders from './Pages/Orders';
@@ -56,6 +59,12 @@ function App() {
               <PublicRoute redirectTo="/profile">
                 <Menu />
               </PublicRoute>
+            } 
+          />
+          <Route 
+            path="/history"
+            element={
+                <History />
             } 
           />
           <Route 
