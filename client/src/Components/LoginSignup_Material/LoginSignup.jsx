@@ -12,10 +12,10 @@ import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import userService from '../../Services/UserService';
 import { isValidEmail, isValidPassword, isValidName } from '../../utils/Validation';
 import UserContext from '../../UserContext';
 import { useNavigate } from 'react-router-dom';
+import { login, signup } from '../../Services/userServicetest';
 //import myLocalImage from '../LoginSignup_Material/picture_gpt.png';
 import myLocalImage from '../Assets/picture_gpt.png'
 //check
@@ -28,7 +28,7 @@ export default function LoginSignup() {
 
   const handleLogin = async (email, password) => {
     try {
-      const responseData = await userService.login({ email, password });
+      const responseData = await login({ email, password });
       if (responseData.status === 'ok') {
         localStorage.setItem('token', responseData.token);
         setUser({
@@ -58,7 +58,7 @@ export default function LoginSignup() {
       return;
     }
     try {
-      const response = await userService.register({ name, email, password });
+      const response = await signup({ name, email, password });
       console.log(response);
       const responseData = response.data;
   
