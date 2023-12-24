@@ -98,6 +98,7 @@ import Menu from './Pages/Menu'; // Import the Menu page
 import Cart from './Pages/Cart'; // Import the Cart page
 import Checkout from './Pages/Checkout'; // Import the Checkout page
 import UserContext from './UserContext';
+import History from './Pages/History';
 
 import PublicRoute from './Routes/PublicRoute';
 
@@ -124,6 +125,12 @@ function App() {
               <PublicRoute redirectTo="/profile">
                 <Menu />
               </PublicRoute>
+            } 
+          />
+          <Route 
+            path="/history"
+            element={
+                <History />
             } 
           />
           <Route 
