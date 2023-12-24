@@ -100,6 +100,7 @@ import Checkout from './Pages/Checkout'; // Import the Checkout page
 import UserContext from './UserContext';
 import PublicRoute from './Routes/PublicRoute';
 import RestMenu from './Pages/Rest_Menu';
+import Orders from './Pages/Orders';
 
 function App() {
   const token = localStorage.getItem('token');
@@ -123,6 +124,14 @@ function App() {
             element={
               <PublicRoute redirectTo="/profile">
                 <RestMenu />
+              </PublicRoute>
+            } 
+          />
+          <Route 
+            path="/order"
+            element={
+              <PublicRoute redirectTo="/profile">
+                <Orders />
               </PublicRoute>
             } 
           />
