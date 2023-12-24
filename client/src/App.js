@@ -8,6 +8,8 @@ import Cart from './Pages/Cart';
 import Checkout from './Pages/Checkout';
 import UserContext from './UserContext';
 import PublicRoute from './Routes/PublicRoute';
+import RestMenu from './Pages/Rest_Menu';
+import Orders from './Pages/Orders';
 
 function App() {
   const token = localStorage.getItem('token');
@@ -24,6 +26,74 @@ function App() {
           <Route path="/profile" element={<PublicRoute redirectTo="/"><ProfilePage /></PublicRoute>} />
           <Route path="/login" element={<PublicRoute redirectTo="/profile"><LoginPage /></PublicRoute>} />
           <Route path="*" element={user ? <Navigate to="/" /> : <Navigate to="/login" />} />
+          <Route 
+            path="/" 
+            element={
+              <PublicRoute redirectTo="/profile">
+                <Home />
+              </PublicRoute>
+            } 
+          />
+          <Route 
+            path="/restmenu"
+            element={
+              <PublicRoute redirectTo="/profile">
+                <RestMenu />
+              </PublicRoute>
+            } 
+          />
+          <Route 
+            path="/order"
+            element={
+              <PublicRoute redirectTo="/profile">
+                <Orders />
+              </PublicRoute>
+            } 
+          />
+          <Route 
+            path="/menu"
+            element={
+              <PublicRoute redirectTo="/profile">
+                <Menu />
+              </PublicRoute>
+            } 
+          />
+          <Route 
+            path="/cart"
+            element={
+              <PublicRoute redirectTo="/profile">
+                <Cart />
+              </PublicRoute>
+            } 
+          />
+          <Route 
+            path="/checkout"
+            element={
+              <PublicRoute redirectTo="/profile">
+                <Checkout />
+              </PublicRoute>
+            } 
+          />
+          <Route 
+            path="/profile" 
+            element={
+              <PublicRoute redirectTo="/">
+                <ProfilePage />
+              </PublicRoute>
+            } 
+          />
+          <Route 
+            path="/login" 
+            element={
+              <PublicRoute redirectTo="/profile">
+                <LoginPage />
+              </PublicRoute>
+            } 
+          />
+          <Route 
+            path="*" 
+            element={user ? <Navigate to="/" /> : <Navigate to="/login" />} 
+          />
         </Routes>
       </Router>
     </UserContext.Provider>
