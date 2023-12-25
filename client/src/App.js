@@ -41,19 +41,17 @@ function App() {
           <Route 
             path="/restmenu"
             element={
-              <PublicRoute redirectTo="/profile">
                 <RestMenu />
-              </PublicRoute>
             } 
           />
+
           <Route 
             path="/order"
             element={
-              <PublicRoute redirectTo="/profile">
                 <Orders />
-              </PublicRoute>
             } 
           />
+          
           <Route 
             path="/menu"
             element={
