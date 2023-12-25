@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -12,30 +12,27 @@ import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import userService from '../../Services/UserService';
 import { isValidEmail, isValidPassword, isValidName } from '../../utils/Validation';
 import UserContext from '../../UserContext';
 import { useNavigate } from 'react-router-dom';
+import { login, signup } from '../../Services/userServicetest';
 //import myLocalImage from '../LoginSignup_Material/picture_gpt.png';
 import myLocalImage from '../Assets/picture_gpt.png'
+import { Radio, RadioGroup } from '@mui/material';
 //check
 const defaultTheme = createTheme();
 
 export default function LoginSignup() {
   const navigate = useNavigate();
   const [action, setAction] = useState("Login");
-  const { setUser } = useContext(UserContext);
 
   const handleLogin = async (email, password) => {
     try {
-      const responseData = await userService.login({ email, password });
-      if (responseData.status === 'ok') {
-        localStorage.setItem('token', responseData.token);
-        setUser({
-          token: responseData.token
-        });
+      const responseData = await login({ email, password });
+      if (responseData.message === 'logged in successfully') {
+        localStorage.setItem('token', responseData.data);
        
-        navigate('/profile');
+        navigate('/home');
       } else {
         window.alert('Login Failed');
       }
@@ -44,8 +41,12 @@ export default function LoginSignup() {
     }
   };
 
-  const handleSignup = async (name, email, password) => {
-    if (!isValidName(name)) {
+  const handleSignup = async (firstName, lastName, email, password, role) => {
+    if (!isValidName(firstName)) {
+      window.alert('Name should be at least 2 characters.');
+      return;
+    }
+    if (!isValidName(lastName)) {
       window.alert('Name should be at least 2 characters.');
       return;
     }
@@ -58,33 +59,41 @@ export default function LoginSignup() {
       return;
     }
     try {
-      const response = await userService.register({ name, email, password });
+      const response = await signup({ firstName, lastName, email, password, role });
       console.log(response);
-      const responseData = response.data;
-  
-      if (responseData.status === 'ok') {
+      const responseData = response.message;
+
+      if (responseData === 'User created successfully') {
         
         handleLogin(email,password);
       } else {
         window.alert('Signup Failed');
       }
     } catch (error) {
+      console.log(error);
       window.alert('An error occurred during signup', error);
     }
   };
 
+  const [userType, setUserType] = useState('user'); // Default to 'user'
+
+  const handleUserTypeChange = (event) => {
+    setUserType(event.target.value);
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const email = data.get('email');
     const password = data.get('password');
-    const name = action === "Signup" ? data.get('name') : "";
+    const firstName = action === "Signup" ? data.get('firstName') : "";
+    const lastName = action === "Signup" ? data.get('lastName') : "";
+    const role = userType;
 
     if (action === "Login") {
       handleLogin(email, password);
     } else {
-      handleSignup(name, email, password);
+      handleSignup(firstName, lastName, email, password, role);
     }
   };
 
@@ -116,16 +125,27 @@ export default function LoginSignup() {
             </Typography>
             <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
               {action === "Signup" && (
-                <TextField
-                  margin="normal"
-                  required
-                  fullWidth
-                  id="name"
-                  label="Name"
-                  name="name"
-                  autoComplete="name"
-                  autoFocus
-                />
+                <div>
+                  <TextField
+                    margin="normal"
+                    required
+                    fullWidth
+                    id="firstName"
+                    label="First Name"
+                    name="firstName"
+                    autoComplete="firstName"
+                    autoFocus
+                  />
+                  <TextField
+                    margin="normal"
+                    required
+                    fullWidth
+                    id="lastName"
+                    label="Last Name"
+                    name="lastName"
+                    autoComplete="lastName"
+                  />
+                </div>
               )}
               <TextField
                 margin="normal"
@@ -147,6 +167,20 @@ export default function LoginSignup() {
                 id="password"
                 autoComplete="current-password"
               />
+              {action === "Signup" && (
+                <RadioGroup row value={userType} onChange={handleUserTypeChange}>
+                  <FormControlLabel
+                    value="user"
+                    control={<Radio color="primary" />}
+                    label="User"
+                  />
+                  <FormControlLabel
+                    value="restaurant owner"
+                    control={<Radio color="primary" />}
+                    label="Restaurant Owner"
+                  />
+                </RadioGroup>
+              )}
               <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}
                 label="Remember me"
