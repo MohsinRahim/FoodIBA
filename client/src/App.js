@@ -22,7 +22,7 @@ function App() {
     <UserContext.Provider value={{ user, setUser }}>
       <Router>
         <Routes>
-          <Route path="/" element={<PublicRoute redirectTo="/profile"><Home /></PublicRoute>} />
+          <Route path="/" element={<PublicRoute redirectTo="/home"><Home /></PublicRoute>} />
           <Route path="/menu/:restaurantId" element={<Menu />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />

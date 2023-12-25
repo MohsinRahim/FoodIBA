@@ -16,8 +16,7 @@ export const fetchCart = async () => {
 };
 
 export const clearCart = async () => {
-  console.log(headers);
-  const response = await API.post('/api/cart/clear-cart',  { headers });
+  const response = await API.post('/api/cart/clear-cart',  null,   { headers });
   return response.data;
 };
 
