@@ -1,5 +1,6 @@
 import { ListItem, ListItemText, IconButton, Typography } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
+import { useEffect } from 'react';
 
 export default function CartItem({ item, onEdit }) {
   return (
@@ -13,15 +14,16 @@ export default function CartItem({ item, onEdit }) {
         secondary={
           <>
             <Typography component="span" variant="body2">
-              {`Quantity: ${item.quantity} | Price: $${item.price}`}
+              {`Quantity: ${item.quantity} | Price: $${item.menuItem.price}`}
             </Typography>
-            <Typography component="span" variant="body2">
+            <hr />
+            {/* <Typography component="span" variant="body2">
               {`Special Instructions: ${item.specialInstructions}`}
-            </Typography>
+            </Typography> */}
           </>
         }
       />
-      <Typography variant="subtitle1">{`$${(item.quantity * item.price).toFixed(2)}`}</Typography>
+      <Typography variant="subtitle1">{`$${(item.quantity * item.menuItem.price).toFixed(2)}`}</Typography>
     </ListItem>
   );
 }

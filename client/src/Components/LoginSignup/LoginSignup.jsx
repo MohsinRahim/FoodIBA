@@ -31,7 +31,7 @@ const LoginSignup = () => {
     }
     try {
         const responseData = await userService.login({ email, password }); // Just directly get the responseData
-        if (responseData.status === 'ok') {
+      if (responseData.status === 'ok') {
         localStorage.setItem('token', responseData.token);
         console.log("Received token:", responseData.token);
         console.log("setUser method:", setUser);

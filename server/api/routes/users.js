@@ -330,61 +330,61 @@ module.exports = router;
 // });
 
 // Get User Profile
-router.get('/profile', authenticate, async (req, res) => {
-    const user = await User.findById(req.user._id).select('-password');
-    res.send(user);
-});
+// router.get('/profile', authenticate, async (req, res) => {
+//     const user = await User.findById(req.user._id).select('-password');
+//     res.send(user);
+// });
 
-// Update User Information
-router.put('/profile', authenticate, async (req, res) => {
-    const { name, email, password } = req.body;
-    const userId = req.user._id;
+// // Update User Information
+// router.put('/profile', authenticate, async (req, res) => {
+//     const { name, email, password } = req.body;
+//     const userId = req.user._id;
 
-    try {
-        let user = await User.findById(userId);
+//     try {
+//         let user = await User.findById(userId);
 
-        if (!user) {
-            return res.status(404).send('User not found');
-        }
+//         if (!user) {
+//             return res.status(404).send('User not found');
+//         }
 
-        // Update user information
-        user.name = name || user.name;
-        user.email = email || user.email;
+//         // Update user information
+//         user.name = name || user.name;
+//         user.email = email || user.email;
 
-        if (password) {
-            const salt = await bcrypt.genSalt(10);
-            user.password = await bcrypt.hash(password, salt);
-        }
+//         if (password) {
+//             const salt = await bcrypt.genSalt(10);
+//             user.password = await bcrypt.hash(password, salt);
+//         }
 
-        await user.save();
+//         await user.save();
 
-        // Optionally, you can re-generate the JWT token if any user information is updated
-        const token = user.generateAuthToken();
+//         // Optionally, you can re-generate the JWT token if any user information is updated
+//         const token = user.generateAuthToken();
 
-        res.send({ message: 'User information updated successfully', token });
-    } catch (error) {
-        res.status(500).send('Internal server error');
-    }
-});
+//         res.send({ message: 'User information updated successfully', token });
+//     } catch (error) {
+//         res.status(500).send('Internal server error');
+//     }
+// });
 
-// Delete User Account
-router.delete('/profile', authenticate, async (req, res) => {
-    const userId = req.user._id;
+// // Delete User Account
+// router.delete('/profile', authenticate, async (req, res) => {
+//     const userId = req.user._id;
 
-    try {
-        const user = await User.findByIdAndRemove(userId);
+//     try {
+//         const user = await User.findByIdAndRemove(userId);
 
-        if (!user) {
-            return res.status(404).send('User not found');
-        }
+//         if (!user) {
+//             return res.status(404).send('User not found');
+//         }
 
-        res.send('User account deleted successfully');
-    } catch (error) {
-        res.status(500).send('Internal server error');
-    }
-});
+//         res.send('User account deleted successfully');
+//     } catch (error) {
+//         res.status(500).send('Internal server error');
+//     }
+// });
 
-module.exports = router;
+// module.exports = router;
 
 
 

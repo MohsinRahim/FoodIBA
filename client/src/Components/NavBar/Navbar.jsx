@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { AppBar, Toolbar, IconButton, Typography, Button, InputBase, Box } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import SearchIcon from '@mui/icons-material/Search';
 import { styled } from '@mui/material/styles';
+import { useNavigate } from 'react-router-dom';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -45,6 +46,22 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function Navbar() {
+  const navigate = useNavigate();
+  const [token, setToken] = useState(null);
+
+  const handleLoginClick = () => {
+    navigate(`/login`);
+  };
+
+  const handleLogOutClick = () => {
+    localStorage.removeItem('token');
+    window.location.reload();
+  };
+
+  useEffect(() => {
+    setToken(localStorage.getItem('token'));
+  }, []);
+
   return (
     <AppBar position="static">
       <Toolbar>
@@ -67,7 +84,9 @@ export default function Navbar() {
           />
         </Search>
         <Box sx={{ flexGrow: 1 }} />
-        <Button color="inherit">Login</Button>
+        {token === null ? (
+          <Button color="inherit" onClick={handleLoginClick}>Login</Button>
+        ) : <Button color="inherit" onClick={handleLogOutClick}>Log Out</Button>}
       </Toolbar>
     </AppBar>
   );

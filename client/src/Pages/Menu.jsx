@@ -39,7 +39,6 @@ export default function Menu() {
       }
     }
 
-    await addToCart(item._id, 1); // Assuming the quantity is 1 for simplicity
     setSelectedItem(item);
     setDialogOpen(true);
   };
@@ -48,8 +47,9 @@ export default function Menu() {
     setDialogOpen(false);
   };
 
-  const handleAddToCartConfirm = (quantity, specialInstructions) => {
+  const handleAddToCartConfirm = async (quantity, specialInstructions) => {
     console.log('Add to cart:', selectedItem, quantity, specialInstructions);
+    await addToCart(selectedItem._id, quantity); // Assuming the quantity is 1 for simplicity
     setDialogOpen(false);
   };
 

@@ -23,11 +23,12 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<PublicRoute redirectTo="/profile"><Home /></PublicRoute>} />
-          <Route path="/menu/:restaurantId" element={<PublicRoute redirectTo="/profile"><Menu /></PublicRoute>} />
-          <Route path="/cart" element={<PublicRoute redirectTo="/profile"><Cart /></PublicRoute>} />
-          <Route path="/checkout" element={<PublicRoute redirectTo="/profile"><Checkout /></PublicRoute>} />
-          <Route path="/profile" element={<PublicRoute redirectTo="/"><ProfilePage /></PublicRoute>} />
-          <Route path="/login" element={<PublicRoute redirectTo="/profile"><LoginPage /></PublicRoute>} />
+          <Route path="/menu/:restaurantId" element={<Menu />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/home" element={<Home />} />
           <Route path="*" element={user ? <Navigate to="/" /> : <Navigate to="/login" />} />
           <Route 
             path="/" 

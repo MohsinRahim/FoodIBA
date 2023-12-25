@@ -66,7 +66,7 @@ export default function Cart() {
     }
   };
 
-  const totalBill = cartItems.reduce((total, item) => total + item.quantity * item.price, 0);
+  const totalBill = cartItems.reduce((total, item) => total + item.quantity * item.menuItem.price, 0);
 
   return (
     <>
@@ -77,14 +77,11 @@ export default function Cart() {
         </Typography>
         <List>
           {cartItems.map((item) => (
-            <CartItem key={item.id} item={item} onEdit={() => handleEditClick(item)} />
+            <CartItem key={item._id} item={item} onEdit={() => handleEditClick(item)} />
           ))}
         </List>
         <Box display="flex" justifyContent="space-between" alignItems="center" mt={2}>
           <Typography variant="h5">Total: ${totalBill.toFixed(2)}</Typography>
-          <Button variant="contained" color="primary" onClick={() => setVoucherDialogOpen(true)}>
-            Add Voucher
-          </Button>
           <Button variant="contained" color="secondary" onClick={() => alert('Proceed to checkout?')}>
             Checkout
           </Button>
