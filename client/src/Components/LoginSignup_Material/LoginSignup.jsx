@@ -30,8 +30,10 @@ export default function LoginSignup() {
     try {
       const responseData = await login({ email, password });
       if (responseData.message === 'logged in successfully') {
-        localStorage.setItem('token', responseData.data);
-       
+        localStorage.setItem('token', responseData.data.token);
+        localStorage.setItem('role', responseData.data.role);
+
+        console.log("Received ", responseData);
         navigate('/home');
       } else {
         window.alert('Login Failed');

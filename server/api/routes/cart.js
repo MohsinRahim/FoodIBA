@@ -24,7 +24,9 @@ router.post('/add-to-cart', authenticate, async (req, res) => {
         // Check if the item already exists in the cart
         const existingItem = cart.items.find(item => item.menuItem.toString() === menuItemId);
         if (existingItem) {
-            existingItem.quantity += quantity;
+            console.log("before ", existingItem.quantity);
+            existingItem.quantity += Number (quantity);
+            console.log("after", existingItem.quantity);
         } else {
             cart.items.push(new CartItem({ menuItem: menuItemId, quantity }));
         }

@@ -5,7 +5,7 @@ const restaurantSchema = new mongoose.Schema({
     logo: String,
     website: String,
     location: String,
-    phoneNumber: String,
+    email: String,
     menu: [{ type: mongoose.Schema.Types.ObjectId, ref: 'MenuItem' }], // Link to menu items
     reviews: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Review' }], // Link to reviews
     // Add other restaurant-specific fields as needed

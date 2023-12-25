@@ -3,6 +3,8 @@ const router = express.Router();
 const MenuItem = require('../models/menuItem');
 const Restaurant = require('../models/restaurant'); // Import the Restaurant model
 const authenticate = require('../middleware/authenticate');
+const jwt = require('jsonwebtoken');
+const { User } = require('../models/user');
 
 // Update the 'Create a new menu item associated with a specific restaurant' route to save the menu item's ID in the restaurant's 'menu' field
 router.post('/', authenticate, async (req, res) => {
@@ -68,27 +70,35 @@ router.get('/', async (req, res) => {
 });
 
 // Read all menu items of a specific restaurant by restaurant ID
-router.get('/by-restaurant/:restaurantId', async (req, res) => {
-    const { restaurantId } = req.params;
-
+router.get('/by-restaurant', async (req, res) => {
+    const token = req.header('x-auth-token');
+  
     try {
-        // Find the restaurant by its ID
-        const restaurant = await Restaurant.findById(restaurantId);
-        
-        if (!restaurant) {
-            return res.status(404).json({ error: 'Restaurant not found' });
-        }
-
-        // Find all menu items associated with the restaurant
-        const menuItems = await MenuItem.find({ _id: { $in: restaurant.menu } });
-
-        res.status(200).json(menuItems);
+      // Verify the token and decode the user's email
+      const decodedToken = jwt.verify(token, "your-secret-key"); // Replace with your secret key
+      const userID = decodedToken._id;
+      const user = await User.findById(userID);
+      
+      // Find the restaurant by its email
+      const restaurant = await Restaurant.findOne({ email: user.email });
+      
+      if (!restaurant) {
+        return res.status(404).json({ error: 'Restaurant not found' });
+      }
+      
+      // Get the restaurant ID
+      const restaurantId = restaurant._id.toString();
+      
+      console.log(restaurantId);
+      // Find all menu items associated with the restaurant
+      const menuItems = await MenuItem.find({ restaurant: restaurantId });
+  
+      res.status(200).json(menuItems);
     } catch (err) {
-        console.log(err);
-        res.status(500).json({ error: 'Internal server error' });
+      console.log(err);
+      res.status(500).json({ error: 'Internal server error' });
     }
-});
-
+  });
 // Update a menu item by ID
 router.put('/:id', authenticate, async (req, res) => {
     const { id } = req.params;
