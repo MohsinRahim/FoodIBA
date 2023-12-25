@@ -7,9 +7,9 @@ const authenticate = require('../middleware/authenticate');
 
 // Create a new restaurant
 router.post('/', authenticate, async (req, res) => {
-    const { name, logo, website, location, phoneNumber, menu } = req.body;
+    const { name, logo, website, location, email, menu } = req.body;
 
-    const restaurant = new Restaurant({ name, logo, website, location, phoneNumber, menu });
+    const restaurant = new Restaurant({ name, logo, website, location, email, menu });
 
     await restaurant.save();
     res.status(201).json(restaurant);
@@ -30,11 +30,11 @@ router.get('/', async (req, res) => {
 // Update a restaurant by ID
 router.put('/:id', authenticate, async (req, res) => {
     const { id } = req.params;
-    const { name, logo, website, location, phoneNumber, menu } = req.body;
+    const { name, logo, website, location, email, menu } = req.body;
 
     const updatedRestaurant = await Restaurant.findByIdAndUpdate(
         id,
-        { name, logo, website, location, phoneNumber, menu },
+        { name, logo, website, location, email, menu },
         { new: true }
     );
 
@@ -61,8 +61,8 @@ module.exports = router;
 
 // // Create a new restaurant
 // router.post('/', authenticate, async (req, res) => {
-//     const { name, logo, website, location, phoneNumber } = req.body;
-//     const restaurant = new Restaurant({ name, logo, website, location, phoneNumber });
+//     const { name, logo, website, location, email } = req.body;
+//     const restaurant = new Restaurant({ name, logo, website, location, email });
 //     await restaurant.save();
 //     res.status(201).json(restaurant);
 // });
@@ -83,7 +83,7 @@ module.exports = router;
 //                 logo: restaurant.logo,
 //                 website: restaurant.website,
 //                 location: restaurant.location,
-//                 phoneNumber: restaurant.phoneNumber,
+//                 email: restaurant.email,
 //                 meals: {}, // Initialize meals as an empty object
 //             };
 
@@ -115,10 +115,10 @@ module.exports = router;
 // // Update a restaurant by ID
 // router.put('/:id', authenticate, async (req, res) => {
 //     const { id } = req.params;
-//     const { name, logo, website, location, phoneNumber } = req.body;
+//     const { name, logo, website, location, email } = req.body;
 //     const updatedRestaurant = await Restaurant.findByIdAndUpdate(
 //         id,
-//         { name, logo, website, location, phoneNumber },
+//         { name, logo, website, location, email },
 //         { new: true }
 //     );
 //     res.json(updatedRestaurant);

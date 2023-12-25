@@ -27,7 +27,7 @@ const Orders = () => {
 
   return (
     <div>
-              <Navbar />  {/* Using Navbar component */}
+      <Navbar />  {/* Using Navbar component */}
 
       <h1>Orders Page</h1>
       <div style={{ display: 'flex' }}>

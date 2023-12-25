@@ -3,7 +3,10 @@ import { AppBar, Toolbar, IconButton, Typography, Button, InputBase, Box } from 
 import HomeIcon from '@mui/icons-material/Home';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import ReorderIcon from '@mui/icons-material/Reorder';
+import RestoreIcon from '@mui/icons-material/Restore';
 import SearchIcon from '@mui/icons-material/Search';
+import RestaurantMenuIcon from '@mui/icons-material/RestaurantMenu';
 import { styled } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
 
@@ -48,6 +51,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export default function Navbar() {
   const navigate = useNavigate();
   const [token, setToken] = useState(null);
+  const [role, setRole] = useState(null);
 
   const handleLoginClick = () => {
     navigate(`/login`);
@@ -55,25 +59,65 @@ export default function Navbar() {
 
   const handleLogOutClick = () => {
     localStorage.removeItem('token');
+    navigate(`/home`);
     window.location.reload();
+  };
+
+  const handleHomeClick = () => {
+    navigate(`/home`);
+  };
+
+  const handleCartClick = () => {
+    navigate(`/cart`);
+  };
+
+  const handleProfileClick = () => {
+    navigate(`/profile`);
+  };
+
+  const handleHistoryClick = () => {
+    navigate(`/history`);
+  };
+
+  const handleOrderClick = () => {
+    navigate(`/orders`);
+  };
+
+  const handleRestMenuClick = () => {
+    navigate(`/restmenu`);
   };
 
   useEffect(() => {
     setToken(localStorage.getItem('token'));
+    setRole(localStorage.getItem('role'));
   }, []);
 
   return (
     <AppBar position="static">
       <Toolbar>
-        <IconButton edge="start" color="inherit" aria-label="home">
-          <HomeIcon />
-        </IconButton>
-        <IconButton color="inherit" aria-label="cart">
-          <ShoppingCartIcon />
-        </IconButton>
-        <IconButton color="inherit" aria-label="account">
-          <AccountCircleIcon />
-        </IconButton>
+        {role === 'restaurant owner' ? ( // Check the user's role
+          <>
+          <IconButton color="inherit" aria-label="history" onClick={handleHistoryClick}>
+            <RestoreIcon />
+          </IconButton>
+          <IconButton color="inherit" aria-label="orders" onClick={handleOrderClick}>
+            <ReorderIcon />
+          </IconButton>
+          <IconButton color="inherit" aria-label="restmenu" onClick={handleRestMenuClick}>
+            <RestaurantMenuIcon />
+          </IconButton>
+          </>
+        ) : <>
+          <IconButton edge="start" color="inherit" aria-label="home" onClick={handleHomeClick}>
+            <HomeIcon />
+          </IconButton>
+          <IconButton color="inherit" aria-label="cart" onClick={handleCartClick}>
+            <ShoppingCartIcon />
+          </IconButton>
+          <IconButton color="inherit" aria-label="account" onClick={handleProfileClick}>
+            <AccountCircleIcon />
+          </IconButton>
+        </>}
         <Search>
           <SearchIconWrapper>
             <SearchIcon />

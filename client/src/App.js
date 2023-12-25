@@ -13,6 +13,8 @@ import History from './Pages/History';
 import PublicRoute from './Routes/PublicRoute';
 import RestMenu from './Pages/Rest_Menu';
 import Orders from './Pages/Orders';
+import RestaurantCard from './Components/RestaurantCard/RestaurantCard';
+import MenuItem from './Components/Menu/MenuItem';
 
 function App() {
   const token = localStorage.getItem('token');
@@ -29,6 +31,9 @@ function App() {
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/home" element={<Home />} />
+          <Route path="/restmenu" element={<RestMenu />} />
+          <Route path="/history" element={<History />} />
+          <Route path="/orders" element={<Orders />} />
           <Route path="*" element={user ? <Navigate to="/" /> : <Navigate to="/login" />} />
           <Route 
             path="/" 
@@ -41,19 +46,17 @@ function App() {
           <Route 
             path="/restmenu"
             element={
-              <PublicRoute redirectTo="/profile">
                 <RestMenu />
-              </PublicRoute>
             } 
           />
+
           <Route 
             path="/order"
             element={
-              <PublicRoute redirectTo="/profile">
                 <Orders />
-              </PublicRoute>
             } 
           />
+          
           <Route 
             path="/menu"
             element={

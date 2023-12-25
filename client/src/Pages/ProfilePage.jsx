@@ -5,6 +5,7 @@ import UploadImage from '../Components/UploadImage/UploadImage';
 import EmptyBox from '../Components/EmptyBox/EmptyBox';
 import TemporaryDrawer from '../Components/sidebar_material/sidebar';
 import TheTable from '../Components/TheTable/TheTable';
+import Navbar from '../Components/NavBar/Navbar';
 
 const ProfilePage = () => {
   const [isDrawerOpen, setDrawerOpen] = useState(false);
@@ -21,8 +22,9 @@ const ProfilePage = () => {
 
   return (
     <div>
-      <AppBar_material toggleDrawer={toggleDrawer} />
-      <TemporaryDrawer isOpen={isDrawerOpen} toggleDrawer={toggleDrawer} />
+      <Navbar />
+      {/* <AppBar_material toggleDrawer={toggleDrawer} />
+      <TemporaryDrawer isOpen={isDrawerOpen} toggleDrawer={toggleDrawer} /> */}
 
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '20px', margin: '50px' }}>
         <UploadImage onImageUpload={handleImageUpload} />

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Container, Typography, Paper, List, ListItem, ListItemText, Divider } from '@mui/material';
 import Header from '../Components/Header/Header';
 import Footer from '../Components/Footer/Footer';
+import Navbar from '../Components/NavBar/Navbar';
 
 export default function History() {
   const [orderHistory, setOrderHistory] = useState([]);
@@ -20,7 +21,7 @@ export default function History() {
 
   return (
     <>
-      <Header />
+      <Navbar />
       <Container maxWidth="md" style={{ marginTop: '20px' }}>
         <Typography variant="h4" gutterBottom align="center">
           Order History
