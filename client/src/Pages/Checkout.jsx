@@ -3,6 +3,7 @@ import { Container, Typography, Button } from '@mui/material';
 import OrderSummary from '../Components/Checkout/OrderSummary';
 import PaymentMethod from '../Components/Checkout/PaymentMethod';
 import ConfirmDialog from '../Components/Checkout/ConfirmDialog';
+import Navbar from '../Components/NavBar/Navbar';
 
 export default function Checkout() {
   const [orderDetails, setOrderDetails] = useState({
@@ -30,6 +31,7 @@ export default function Checkout() {
 
   return (
     <Container maxWidth="sm">
+      <Navbar />
       <Typography variant="h4" gutterBottom>Checkout</Typography>
       <OrderSummary orderDetails={orderDetails} />
       <PaymentMethod paymentMethod={paymentMethod} setPaymentMethod={setPaymentMethod} />

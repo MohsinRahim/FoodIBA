@@ -6,12 +6,15 @@ import CartItem from '../Components/Cart/CartItem';
 import EditItemDialog from '../Components/Cart/EditItemDialog';
 import VoucherDialog from '../Components/Cart/VoucherDialog';
 import { fetchCart, clearCart } from '../Services/cartService';
+import Navbar from '../Components/NavBar/Navbar';
+import { useNavigate } from 'react-router-dom';
 
 export default function Cart() {
   const [cartItems, setCartItems] = useState([]);
   const [editingItem, setEditingItem] = useState(null);
   const [voucherDialogOpen, setVoucherDialogOpen] = useState(false);
   const [editDialogOpen, setEditDialogOpen] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const loadCart = async () => {
@@ -66,11 +69,15 @@ export default function Cart() {
     }
   };
 
+  const handleCheckout = () => {
+    navigate('/checkout')
+  };
+
   const totalBill = cartItems.reduce((total, item) => total + item.quantity * item.menuItem.price, 0);
 
   return (
     <>
-      <Header />
+      <Navbar />
       <Container maxWidth="md">
         <Typography variant="h3" gutterBottom>
           Your Cart
@@ -82,7 +89,7 @@ export default function Cart() {
         </List>
         <Box display="flex" justifyContent="space-between" alignItems="center" mt={2}>
           <Typography variant="h5">Total: ${totalBill.toFixed(2)}</Typography>
-          <Button variant="contained" color="secondary" onClick={() => alert('Proceed to checkout?')}>
+          <Button variant="contained" color="secondary" onClick={handleCheckout}>
             Checkout
           </Button>
           <Button variant="contained" color="error" onClick={handleClearCart}>

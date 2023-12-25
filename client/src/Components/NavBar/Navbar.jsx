@@ -55,7 +55,20 @@ export default function Navbar() {
 
   const handleLogOutClick = () => {
     localStorage.removeItem('token');
+    navigate(`/home`);
     window.location.reload();
+  };
+
+  const handleHomeClick = () => {
+    navigate(`/home`);
+  };
+
+  const handleCartClick = () => {
+    navigate(`/cart`);
+  };
+
+  const handleProfileClick = () => {
+    navigate(`/profile`);
   };
 
   useEffect(() => {
@@ -65,13 +78,13 @@ export default function Navbar() {
   return (
     <AppBar position="static">
       <Toolbar>
-        <IconButton edge="start" color="inherit" aria-label="home">
+        <IconButton edge="start" color="inherit" aria-label="home" onClick={handleHomeClick}>
           <HomeIcon />
         </IconButton>
-        <IconButton color="inherit" aria-label="cart">
+        <IconButton color="inherit" aria-label="cart" onClick={handleCartClick}>
           <ShoppingCartIcon />
         </IconButton>
-        <IconButton color="inherit" aria-label="account">
+        <IconButton color="inherit" aria-label="account" onClick={handleProfileClick}>
           <AccountCircleIcon />
         </IconButton>
         <Search>
