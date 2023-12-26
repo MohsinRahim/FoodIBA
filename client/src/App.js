@@ -11,7 +11,7 @@ import UserContext from './UserContext';
 import History from './Pages/History';
 
 import PublicRoute from './Routes/PublicRoute';
-import RestMenu from './Pages/Rest_Menu';
+import RestMenu from './Pages/RestMenu/Rest_Menu';
 import Orders from './Pages/Orders';
 import RestaurantCard from './Components/RestaurantCard/RestaurantCard';
 import MenuItem from './Components/Menu/MenuItem';

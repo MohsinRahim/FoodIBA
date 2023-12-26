@@ -1,16 +1,17 @@
-// Pages/Rest_Menu.jsx (EDITED)
+// Pages/RestMenu/Rest_Menu.jsx
+import './RestMenu.css'; // Import the CSS file
 import React, { useState } from 'react';
 import { Button, Grid, Typography } from '@mui/material';
-import MenuItem from '../Components/Rest_Menu/MenuItem';
-import DealItem from '../Components/Rest_Menu/DealItem';
-import EditItemDialog from '../Components/Rest_Menu/EditItemDialog';
-import Navbar from '../Components/NavBar/Navbar'; // Import Navbar
+import MenuItem from '../../Components/Rest_Menu/MenuItem'; // Corrected import statement
+import DealItem from '../../Components/Rest_Menu/DealItem';
+import EditItemDialog from '../../Components/Rest_Menu/EditItemDialog';
+import Navbar from '../../Components/NavBar/Navbar';
 
 
 const RestMenu = () => {
   const [menuItems, setMenuItems] = useState([
-    { id: 1, name: 'Item 1', price: 10 },
-    { id: 2, name: 'Item 2', price: 15 },
+    { id: 1, name: 'Item 1', price: 10, quantity: 1 },
+    { id: 2, name: 'Item 2', price: 15, quantity: 1 },
     // Add more menu items as needed
   ]);
 
@@ -37,7 +38,6 @@ const RestMenu = () => {
     // Implement logic to update or add item to the menu
     if (currentItem) {
       // Update existing item
-      // Find the index of the current item in the menuItems or dealItems array
       const index = currentItem.isDeal
         ? dealItems.findIndex((deal) => deal.id === currentItem.id)
         : menuItems.findIndex((item) => item.id === currentItem.id);
@@ -56,7 +56,7 @@ const RestMenu = () => {
       const newItemOrDeal = {
         id: formData.isDeal ? dealItems.length + 1 : menuItems.length + 1,
         ...formData,
-        items: formData.isDeal ? [] : undefined, // Initialize items array for deals
+        items: formData.isDeal ? [] : undefined,
       };
 
       if (formData.isDeal) {
@@ -66,13 +66,12 @@ const RestMenu = () => {
       }
     }
 
-    // Close the dialog
     setEditItemDialogOpen(false);
   };
 
   return (
-    <div>
-              <Navbar />  {/* Using Navbar component */}
+    <div className="rest-menu-container">
+      <Navbar />
 
       <Typography variant="h4">Menu</Typography>
 
@@ -102,7 +101,7 @@ const RestMenu = () => {
               </Button>
             </div>
           ))}
-          <Button variant="contained" onClick={() => handleAddItemClick()}>
+          <Button variant="contained" onClick={handleAddItemClick}>
             Add Deal
           </Button>
         </Grid>

@@ -1,4 +1,4 @@
-// Components/Rest_Menu/EditItemDialog.jsx (EDITED)
+// Components/Rest_Menu/EditItemDialog.jsx
 import React, { useState } from 'react';
 import {
   Dialog,
@@ -8,6 +8,7 @@ import {
   TextField,
   Button,
 } from '@mui/material';
+import './RestMenu.css'; // Import the CSS file
 
 const EditItemDialog = ({ open, handleClose, handleSubmit, currentItem }) => {
   const [name, setName] = useState(currentItem ? currentItem.name : '');
@@ -17,19 +18,18 @@ const EditItemDialog = ({ open, handleClose, handleSubmit, currentItem }) => {
   );
 
   const handleFormSubmit = () => {
-    // Validate form data
     if (!name || !price) {
-      // Handle validation error (e.g., show an error message)
       return;
     }
 
-    // Call the parent component's submit function
     handleSubmit({ name, price, description });
   };
 
   return (
-    <Dialog open={open} onClose={handleClose}>
-      <DialogTitle>{currentItem ? 'Edit Item' : 'Add Item/Deal'}</DialogTitle>
+    <Dialog open={open} onClose={handleClose} className="edit-item-dialog">
+      <DialogTitle className="dialog-title">
+        {currentItem ? 'Edit Item' : 'Add Item/Deal'}
+      </DialogTitle>
       <DialogContent>
         <TextField
           label="Name"

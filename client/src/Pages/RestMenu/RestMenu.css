@@ -1,0 +1,32 @@
+/* RestMenu.css */
+
+/* Styles for RestMenu component */
+.rest-menu-container {
+    margin: 20px;
+  }
+  
+  /* Styles for Navbar component */
+  .navbar {
+    background-color: #2196f3;
+    padding: 10px;
+    color: white;
+    text-align: center;
+  }
+  
+  /* Styles for EditItemDialog component */
+  .edit-item-dialog {
+    max-width: 400px;
+  }
+  
+  .dialog-title {
+    background-color: #2196f3;
+    color: white;
+  }
+  
+  /* Styles for MenuItem and DealItem components */
+  .menu-item-card, .deal-item-card {
+    margin-bottom: 10px;
+  }
+  
+  /* Add more styles as needed */
+  
