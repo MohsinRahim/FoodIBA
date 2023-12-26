@@ -2,31 +2,76 @@
 
 /* Styles for RestMenu component */
 .rest-menu-container {
-    margin: 20px;
-  }
-  
-  /* Styles for Navbar component */
-  .navbar {
-    background-color: #2196f3;
-    padding: 10px;
-    color: white;
-    text-align: center;
-  }
-  
-  /* Styles for EditItemDialog component */
-  .edit-item-dialog {
-    max-width: 400px;
-  }
-  
-  .dialog-title {
-    background-color: #2196f3;
-    color: white;
-  }
-  
-  /* Styles for MenuItem and DealItem components */
-  .menu-item-card, .deal-item-card {
-    margin-bottom: 10px;
-  }
-  
-  /* Add more styles as needed */
-  
+  margin: 20px;
+  background-color: #ffffff; /* White background */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Styles for Navbar component */
+.app-bar {
+  background-color: #800000; /* Maroon background */
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.icon-buttons {
+  color: white !important;
+}
+
+/* Adjust styles for the search bar as needed */
+.search {
+  display: flex;
+  align-items: center;
+  border-radius: 4px;
+  margin-left: 20px; /* Add margin to separate search from icons */
+  background-color: #fff; /* White background */
+  color: #800000; /* Maroon text color */
+}
+
+.search-icon-wrapper {
+  padding: 10px;
+  color: #800000; /* Maroon icon color */
+}
+
+.input-base {
+  color: #800000; /* Maroon text color */
+}
+
+/* Button styles */
+.button {
+  color: white !important;
+}
+
+/* Styles for EditItemDialog component */
+.edit-item-dialog {
+  max-width: 400px;
+}
+
+.dialog-title {
+  background-color: #800000; /* Maroon background */
+  color: white;
+  padding: 10px;
+  border-radius: 8px 8px 0 0;
+}
+
+/* Styles for MenuItem and DealItem components */
+.menu-item-card,
+.deal-item-card {
+  margin-bottom: 10px;
+  background-color: #ffffff; /* White background */
+  border: 1px solid #800000; /* Maroon border */
+  border-radius: 8px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.menu-item-card .MuiCardContent-root,
+.deal-item-card .MuiCardContent-root {
+  color: #800000; /* Maroon text color */
+}
+
+/* Add more styles as needed */

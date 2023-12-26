@@ -7,6 +7,8 @@ import DealItem from '../../Components/Rest_Menu/DealItem';
 import EditItemDialog from '../../Components/Rest_Menu/EditItemDialog';
 import Navbar from '../../Components/NavBar/Navbar';
 
+// Rest of the code remains unchanged
+
 
 const RestMenu = () => {
   const [menuItems, setMenuItems] = useState([
