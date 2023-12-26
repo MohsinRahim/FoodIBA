@@ -1,0 +1,10 @@
+/* Components/Orders/ActiveOrders.css */
+
+.active-orders {
+    /* Add specific styles as needed */
+  }
+  
+  .active-orders h2 {
+    color: var(--maroon-color);
+  }
+  

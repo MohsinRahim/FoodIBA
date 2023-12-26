@@ -1,6 +1,7 @@
 // Components/Orders/OrderCard.jsx
 import React from 'react';
-import Button from '@mui/material/Button'; // Import MUI Button component
+import Button from '@mui/material/Button';
+import './OrderCard.css'; // Import the CSS file
 
 const OrderCard = ({ order }) => {
   const { orderId, name, items, amount, time, status } = order;
@@ -11,14 +12,14 @@ const OrderCard = ({ order }) => {
   };
 
   return (
-    <div style={{ border: '1px solid #ccc', padding: '10px', marginBottom: '10px' }}>
-      <p>Order ID: {orderId}</p>
-      <p>Name: {name}</p>
-      <p>Items: {items.join(', ')}</p>
-      <p>Amount: ${amount}</p>
-      <p>Time: {time}</p>
+    <div className={`order-card ${status === 'active' ? 'active' : ''}`}>
+      <p className="order-id">Order ID: {orderId}</p>
+      <p className="order-name">Name: {name}</p>
+      <p className="order-items">Items: {items.join(', ')}</p>
+      <p className="order-amount">Amount: ${amount}</p>
+      <p className="order-time">Time: {time}</p>
       {status === 'active' && (
-        <Button variant="contained" color="primary" onClick={handleCompleteOrder}>
+        <Button className="complete-button" variant="contained" color="primary" onClick={handleCompleteOrder}>
           Complete Order
         </Button>
       )}

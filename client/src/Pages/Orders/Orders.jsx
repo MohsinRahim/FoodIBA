@@ -1,10 +1,10 @@
-// Pages/Orders.jsx
+// Pages/Orders/Orders.jsx
 import React, { useState } from 'react';
-import ActiveOrders from '../Components/Orders/ActiveOrders';
-import CompletedOrders from '../Components/Orders/CompletedOrders';
-import IncomingOrders from '../Components/Orders/IncomingOrders';
-import Navbar from '../Components/NavBar/Navbar'; // Import Navbar
-
+import ActiveOrders from '../../Components/Orders/ActiveOrders';
+import CompletedOrders from '../../Components/Orders/CompletedOrders';
+import IncomingOrders from '../../Components/Orders/IncomingOrders';
+import Navbar from '../../Components/NavBar/Navbar';
+import './Orders.css'; // Import the CSS file
 
 const Orders = () => {
   // Dummy data for demonstration
@@ -26,19 +26,13 @@ const Orders = () => {
   ];
 
   return (
-    <div>
-      <Navbar />  {/* Using Navbar component */}
-
+    <div className="orders-page">
+      <Navbar />
       <h1>Orders Page</h1>
-      <div style={{ display: 'flex' }}>
-        {/* Active Orders */}
+      <div className="orders-container">
         <ActiveOrders activeOrders={dummyActiveOrders} />
-
-        {/* Completed Orders */}
         <CompletedOrders completedOrders={dummyCompletedOrders} />
       </div>
-
-      {/* Incoming Orders */}
       <IncomingOrders incomingOrders={dummyIncomingOrders} />
     </div>
   );

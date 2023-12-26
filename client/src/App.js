@@ -12,7 +12,7 @@ import History from './Pages/History';
 
 import PublicRoute from './Routes/PublicRoute';
 import RestMenu from './Pages/RestMenu/Rest_Menu';
-import Orders from './Pages/Orders';
+import Orders from './Pages/Orders/Orders';
 import RestaurantCard from './Components/RestaurantCard/RestaurantCard';
 import MenuItem from './Components/Menu/MenuItem';
 
