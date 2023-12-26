@@ -1,14 +1,12 @@
-// Pages/RestMenu/Rest_Menu.jsx
-import './RestMenu.css'; // Import the CSS file
+// RestMenu.jsx
+
 import React, { useState } from 'react';
 import { Button, Grid, Typography } from '@mui/material';
-import MenuItem from '../../Components/Rest_Menu/MenuItem'; // Corrected import statement
+import MenuItem from '../../Components/Rest_Menu/MenuItem';
 import DealItem from '../../Components/Rest_Menu/DealItem';
 import EditItemDialog from '../../Components/Rest_Menu/EditItemDialog';
 import Navbar from '../../Components/NavBar/Navbar';
-
-// Rest of the code remains unchanged
-
+import './RestMenu.css'; // Import the CSS file
 
 const RestMenu = () => {
   const [menuItems, setMenuItems] = useState([
@@ -88,7 +86,7 @@ const RestMenu = () => {
               </Button>
             </div>
           ))}
-          <Button variant="contained" onClick={handleAddItemClick}>
+          <Button variant="contained" onClick={handleAddItemClick} style={{ backgroundColor: '#800000', color: 'white' }}>
             Add Item/Deal
           </Button>
         </Grid>
@@ -103,7 +101,7 @@ const RestMenu = () => {
               </Button>
             </div>
           ))}
-          <Button variant="contained" onClick={handleAddItemClick}>
+          <Button variant="contained" onClick={handleAddItemClick} style={{ backgroundColor: '#800000', color: 'white' }}>
             Add Deal
           </Button>
         </Grid>
