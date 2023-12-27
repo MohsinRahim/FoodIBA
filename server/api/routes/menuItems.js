@@ -69,6 +69,8 @@ router.get('/', async (req, res) => {
     }
 });
 
+
+
 // Read all menu items of a specific restaurant by restaurant ID
 router.get('/by-restaurant', async (req, res) => {
     const token = req.header('x-auth-token');
@@ -99,6 +101,8 @@ router.get('/by-restaurant', async (req, res) => {
       res.status(500).json({ error: 'Internal server error' });
     }
   });
+
+
 // Update a menu item by ID
 router.put('/:id', authenticate, async (req, res) => {
     const { id } = req.params;

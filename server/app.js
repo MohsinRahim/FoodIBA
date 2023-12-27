@@ -8,6 +8,7 @@ const meals = require('./api/routes/meals');
 const menuItemsRouter = require('./api/routes/menuItems'); // Adjust the path as needed
 const reviews = require('./api/routes/reviews');
 const cart = require('./api/routes/cart');
+const orders = require('./api/routes/orders');
 const cors = require("cors")
 
 const app = express();
@@ -30,6 +31,7 @@ app.use('/api/meals', meals);
 app.use('/api/menuItems', menuItemsRouter);
 app.use('/api/reviews', reviews);
 app.use('/api/cart', cart);
+app.use('/api/orders', orders);
 
 // Port
 const port = process.env.PORT || 3000;
