@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import LoginPage from './Pages/LoginPage/LoginPage';
-import ProfilePage from './Pages/ProfilePage';
+import ProfilePage from './Pages/ProfilePage/ProfilePage';
 import Home from './Pages/Home/Home';
 import Menu from './Pages/Menu';
 import Cart from './Pages/Cart';
 import Checkout from './Pages/Checkout';
 import UserContext from './UserContext';
+import Confirmation from './Pages/Confirmation/Confirmation';
 
 import History from './Pages/History/History';
 
@@ -47,6 +48,12 @@ function App() {
             path="/restmenu"
             element={
                 <RestMenu />
+            } 
+          />
+          <Route 
+            path="/confirmation"
+            element={
+                <Confirmation />
             } 
           />
 
