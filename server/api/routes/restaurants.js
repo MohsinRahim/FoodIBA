@@ -27,6 +27,22 @@ router.get('/', async (req, res) => {
     }
 });
 
+// Read a single restaurant by ID
+router.get('/:id', async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const restaurant = await Restaurant.findById(id);
+        if (!restaurant) {
+            return res.status(404).json({ error: 'Restaurant not found' });
+        }
+        res.status(200).json(restaurant);
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
 // Update a restaurant by ID
 router.put('/:id', authenticate, async (req, res) => {
     const { id } = req.params;

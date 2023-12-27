@@ -6,7 +6,7 @@ import MenuHeader from '../Components/Menu/MenuHeader';
 import MenuItem from '../Components/Menu/MenuItem';
 import AddToCartDialog from '../Components/Menu/AddToCartDialog';
 import { useParams } from 'react-router-dom';
-import { fetchMenuItemsByRestaurant } from '../Services/menuService'; // Import required functions
+import { fetchMenuItemsByRestaurant, fetchRestaurantById } from '../Services/menuService'; // Import required functions
 import {  addToCart, fetchCart, clearCart } from '../Services/cartService'; // Import required functions
 
 export default function Menu() {
@@ -14,19 +14,36 @@ export default function Menu() {
   const [selectedItem, setSelectedItem] = useState(null);
   const [dialogOpen, setDialogOpen] = useState(false);
   const { restaurantId } = useParams();
+  const [restaurant, setRestaurant] = useState(null); // State for restaurant details
 
   useEffect(() => {
-    const loadMenuItems = async () => {
-      try {
-        const items = await fetchMenuItemsByRestaurant(restaurantId);
-        setMenuItems(items);
-      } catch (error) {
-        console.error('Error fetching menu items:', error);
-      }
+    const loadRestaurantAndMenuItems = async () => {
+        try {
+            const restaurantDetails = await fetchRestaurantById(restaurantId);
+            setRestaurant(restaurantDetails);
+
+            const items = await fetchMenuItemsByRestaurant(restaurantId);
+            setMenuItems(items);
+        } catch (error) {
+            console.error('Error:', error);
+        }
     };
 
-    loadMenuItems();
-  }, [restaurantId]);
+    loadRestaurantAndMenuItems();
+}, [restaurantId]);
+
+  // useEffect(() => {
+  //   const loadMenuItems = async () => {
+  //     try {
+  //       const items = await fetchMenuItemsByRestaurant(restaurantId);
+  //       setMenuItems(items);
+  //     } catch (error) {
+  //       console.error('Error fetching menu items:', error);
+  //     }
+  //   };
+
+  //   loadMenuItems();
+  // }, [restaurantId]);
 
   const handleAddToCartClick = async (item) => {
     const existingCart = await fetchCart();
@@ -53,30 +70,56 @@ export default function Menu() {
     setDialogOpen(false);
   };
 
-  return (
-    <>
+//   return (
+//     <>
+//       <Navbar />
+//       <Container maxWidth="md">
+//         <MenuHeader name="Restaurant Name" image="/path/to/restaurant-image.jpg" />
+//         {menuItems.map((item, index) => (
+//           <React.Fragment key={index}>
+//             <Typography variant="h5" gutterBottom>
+//               {item.category}
+//             </Typography>
+//             <MenuItem key={item._id} item={item} onAddToCart={() => handleAddToCartClick(item)} />
+//           </React.Fragment>
+//         ))}
+//         <AddToCartDialog
+//           open={dialogOpen}
+//           onClose={handleDialogClose}
+//           onConfirm={handleAddToCartConfirm}
+//           item={selectedItem}
+//         />
+//       </Container>
+//       <Footer />
+//     </>
+//   );
+// }
+
+return (
+  <>
       <Navbar />
       <Container maxWidth="md">
-        <MenuHeader name="Restaurant Name" image="/path/to/restaurant-image.jpg" />
-        {menuItems.map((item, index) => (
-          <React.Fragment key={index}>
-            <Typography variant="h5" gutterBottom>
-              {item.category}
-            </Typography>
-            <MenuItem key={item._id} item={item} onAddToCart={() => handleAddToCartClick(item)} />
-          </React.Fragment>
-        ))}
-        <AddToCartDialog
-          open={dialogOpen}
-          onClose={handleDialogClose}
-          onConfirm={handleAddToCartConfirm}
-          item={selectedItem}
-        />
+          {restaurant && <MenuHeader name={restaurant.name} image={restaurant.image} />}
+          {menuItems.map((item, index) => (
+              <React.Fragment key={index}>
+                  <Typography variant="h5" gutterBottom>
+                      {item.category}
+                  </Typography>
+                  <MenuItem key={item._id} item={item} onAddToCart={() => handleAddToCartClick(item)} />
+              </React.Fragment>
+          ))}
+          <AddToCartDialog
+              open={dialogOpen}
+              onClose={handleDialogClose}
+              onConfirm={handleAddToCartConfirm}
+              item={selectedItem}
+          />
       </Container>
       <Footer />
-    </>
-  );
+  </>
+);
 }
+
 
 
 //   return (
