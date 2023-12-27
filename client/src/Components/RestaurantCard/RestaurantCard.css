@@ -1,0 +1,50 @@
+/* RestaurantCard.css */
+
+/* Restaurant card styles */
+.restaurant-card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    background-color: #fff;
+  }
+  
+  .restaurant-card:hover {
+    transform: scale(1.05);
+    box-shadow: 8px 8px 16px rgba(128, 0, 0, 0.2); /* Larger maroon shadow on hover */
+  }
+  
+  /* Card media (image) styles */
+  .restaurant-card img {
+    width: 100%;
+    height: 200px; /* Increased height for a larger image */
+    object-fit: cover;
+    border-bottom: 1px solid #ddd; /* Border between image and content */
+  }
+  
+  /* Card content styles */
+  .restaurant-card .MuiCardContent-root {
+    padding: 16px;
+  }
+  
+  /* Restaurant name styles */
+  .restaurant-card .MuiTypography-h5 {
+    color: #333;
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+  }
+  
+  /* Rating and distance section styles */
+  .restaurant-card .MuiBox-root {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 8px;
+  }
+  
+  /* Distance styles */
+  .restaurant-card .MuiTypography-subtitle1 {
+    color: #777;
+    font-size: 1rem;
+  }
+  

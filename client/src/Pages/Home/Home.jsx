@@ -1,11 +1,13 @@
+// Home.jsx
+
 import React, { useEffect, useState } from 'react';
 import { Grid, Container, Typography, Box } from '@mui/material';
-import Navbar from '../Components/NavBar/Navbar';
-import Footer from '../Components/Footer/Footer';
-import RestaurantCard from '../Components/RestaurantCard/RestaurantCard';
+import Navbar from '../../Components/NavBar/Navbar';
+import Footer from '../../Components/Footer/Footer';
+import RestaurantCard from '../../Components/RestaurantCard/RestaurantCard';
 import { useNavigate } from 'react-router-dom';
-// Assume fetchRestaurants is a function that gets restaurant data from your backend
-import { fetchRestaurants } from '../Services/restaurantService'; 
+import { fetchRestaurants } from '../../Services/restaurantService';
+import './Home.css';  // Import the CSS file 
 
 export default function Home() {
   const [restaurants, setRestaurants] = useState([]);
@@ -31,19 +33,19 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <Container maxWidth="lg">
+      <Container maxWidth="lg" className="main-container"> {/* Apply styles */}
         <Box sx={{ my: 4 }}>
-          <Typography variant="h4" component="h1" gutterBottom>
+          <Typography variant="h4" component="h1" gutterBottom className="main-heading"> {/* Apply styles */}
             Premium Quality Food for your Healthy & Daily Life
           </Typography>
-          <Typography variant="subtitle1" color="textSecondary">
+          <Typography variant="subtitle1" color="textSecondary" className="subtitle"> {/* Apply styles */}
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sit amet interdum erat.
           </Typography>
         </Box>
         <Grid container spacing={4}>
           {restaurants.map((restaurant, index) => (
             <Grid item key={index} xs={12} sm={6} md={4} onClick={() => handleRestaurantClick(restaurant._id)}>
-              <RestaurantCard {...restaurant} />
+              <RestaurantCard {...restaurant} className="restaurant-card" /> {/* Apply styles */}
             </Grid>
           ))}
         </Grid>
