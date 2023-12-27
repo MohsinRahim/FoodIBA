@@ -25,7 +25,7 @@ export default function Menu() {
             const items = await fetchMenuItemsByRestaurant(restaurantId);
             setMenuItems(items);
         } catch (error) {
-            console.error('Error:', error);
+            console.error('Error: kuch to masla he', error);
         }
     };
 
