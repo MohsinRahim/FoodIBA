@@ -69,6 +69,25 @@ router.get('/', async (req, res) => {
     }
 });
 
+router.get('/:token', async (req, res) => {
+    const { token } = req.params;
+
+    const decodedToken = jwt.verify(token, "your-secret-key");
+    const userID = decodedToken._id;
+
+    const user = await User.findById(userID);
+
+    const restaurant = await Restaurant.findOne({ email: user.email });
+    console.log(restaurant);
+    if(restaurant){
+        const menuItems = await MenuItem.find({ restaurant: restaurant._id });
+        console.log(menuItems);
+        res.status(200).json(menuItems);
+    } else{
+        res.status(404).json({ error: 'Restaurant not found' });
+    }
+});
+
 // Read all menu items of a specific restaurant by restaurant ID
 router.get('/by-restaurant/:restaurantId', async (req, res) => {
     const { restaurantId } = req.params;

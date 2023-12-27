@@ -4,12 +4,15 @@ import OrderSummary from '../Components/Checkout/OrderSummary';
 import PaymentMethod from '../Components/Checkout/PaymentMethod';
 import ConfirmDialog from '../Components/Checkout/ConfirmDialog';
 import Navbar from '../Components/NavBar/Navbar';
-import { fetchCart } from '../Services/cartService';
+import { clearCart, fetchCart } from '../Services/cartService';
+import { createOrder } from '../Services/orderService';
+import { useNavigate } from 'react-router-dom';
 
 export default function Checkout() {
   const [orderDetails, setOrderDetails] = useState([]);
   const [paymentMethod, setPaymentMethod] = useState('cash');
   const [confirmDialogOpen, setConfirmDialogOpen] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const loadCart = async () => {
@@ -31,13 +34,27 @@ export default function Checkout() {
     setConfirmDialogOpen(true);
   };
 
-  const handleConfirmOrder = () => {
+  const handleConfirmOrder = async () => {
     setConfirmDialogOpen(false);
-    // Implement order placement logic here
-    console.log('Order confirmed');
+
+    const data = {  
+      "restaurant": orderDetails[0].menuItem.restaurant,
+      "items": orderDetails.map((item) => {
+        return {
+          "menuItem": item.menuItem._id,
+          "quantity": item.quantity
+        }
+      }),
+    };
+
+    console.log(data);
+    const response = await createOrder(data);
+    if(response.status === 201) {
+      alert("Order placed successfully");
+      clearCart();
+      navigate('/home');
+    }
   };
-
-
 
   return (
     <Container maxWidth="sm">

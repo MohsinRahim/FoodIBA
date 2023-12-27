@@ -9,7 +9,7 @@ const MenuItem = ({ name, price, quantity }) => {
       <CardContent>
         <Typography variant="h6">{name}</Typography>
         <Typography variant="subtitle1">Price: ${price}</Typography>
-        <Typography variant="subtitle1">Quantity: {quantity}</Typography>
+        {/* <Typography variant="subtitle1">Quantity: {quantity}</Typography> */}
       </CardContent>
     </Card>
   );

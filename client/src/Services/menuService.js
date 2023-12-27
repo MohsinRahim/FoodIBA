@@ -20,3 +20,12 @@ export const fetchMenuItemsByRestaurant = async (restaurantId) => {
     throw error.response.data.message;
   }
 };
+
+export const fetchMenuItemsByOwner = async () => {
+  try {
+    const response = await API.get(`/api/menuItems/` + localStorage.getItem('token'));
+    return response.data;
+  } catch (error) {
+    throw error.response.data.message;
+  }
+};

@@ -2,16 +2,28 @@ const express = require('express');
 const router = express.Router();
 const { Order } = require('../models/order');
 const authenticate = require('../middleware/authenticate');
+const jwt = require('jsonwebtoken');
+const { User } = require('../models/user');
+const Restaurant = require('../models/restaurant');
+const MenuItem = require('../models/menuItem');
 
 // Create a new order
 router.post('/', authenticate, async (req, res) => {
-    const user = req.user;
+    const token = req.header('x-auth-token');
+    const decodedToken = jwt.decode(token);
+    if (!decodedToken) {
+        return res.status(401).json({ error: 'You must be logged in to place an order' });
+    }
+    console.log(await req.body);
+    const userId = decodedToken._id;
+    const body = req.body;
     const newOrder = new Order({
-        user: user._id,
-        items: req.body.items,
+        user: userId,
+        items: body.items,
+        restaurant: body.restaurant,
         status: 'Pending'
     });
-
+    
     try {
         await newOrder.save();
         res.status(201).json(newOrder);
@@ -46,7 +58,6 @@ router.post('/', authenticate, async (req, res) => {
 //     }
 // });
 
-
 // Get orders for a user
 router.get('/', authenticate, async (req, res) => {
     try {
@@ -79,6 +90,9 @@ router.put('/:orderId', authenticate, async (req, res) => {
         console.error(err);
         res.status(500).json({ error: 'Internal server error' });
     }
-});
+}
+
+// router.
+);
 
 module.exports = router;

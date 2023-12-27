@@ -1,10 +1,11 @@
 // Pages/Orders/Orders.jsx
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ActiveOrders from '../../Components/Orders/ActiveOrders';
 import CompletedOrders from '../../Components/Orders/CompletedOrders';
 import IncomingOrders from '../../Components/Orders/IncomingOrders';
 import Navbar from '../../Components/NavBar/Navbar';
 import './Orders.css'; // Import the CSS file
+import { getOrders } from '../../Services/orderService';
 
 const Orders = () => {
   // Dummy data for demonstration
@@ -25,6 +26,17 @@ const Orders = () => {
     { id: 8, name: 'Emma Wilson', items: ['Sushi', 'Miso Soup'], amount: 30.00, time: '6:30 PM' },
   ];
 
+  const [activeOrders, setActiveOrders] = useState("");
+  const [completedOrders, setCompletedOrders] = useState("");
+  const [pendingOrders, setPendingOrders] = useState("");
+
+  useEffect(() => {
+    getOrders().then((response) => {  
+      console.log(response.data);
+      // setActiveOrders(response.data);
+    });
+  }, []);
+   
   return (
     <div className="orders-page">
       <Navbar />

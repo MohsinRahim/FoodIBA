@@ -64,6 +64,7 @@ const Navbar = () => {
 
   const handleLogOutClick = () => {
     localStorage.removeItem('token');
+    localStorage.removeItem('role');
     navigate(`/home`);
     window.location.reload();
   };
@@ -112,7 +113,7 @@ const Navbar = () => {
               <RestaurantMenuIcon />
             </IconButton>
           </>
-        ) : (
+        ) : role === 'user' ?  (
           <>
             <IconButton edge="start" color="inherit" aria-label="home" onClick={handleHomeClick}>
               <HomeIcon />
@@ -122,6 +123,12 @@ const Navbar = () => {
             </IconButton>
             <IconButton color="inherit" aria-label="account" onClick={handleProfileClick}>
               <AccountCircleIcon />
+            </IconButton>
+          </>
+        ) : (
+          <>
+            <IconButton edge="start" color="inherit" aria-label="home" onClick={handleHomeClick}>
+              <HomeIcon />
             </IconButton>
           </>
         )}

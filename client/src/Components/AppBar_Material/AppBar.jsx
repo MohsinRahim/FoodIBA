@@ -17,7 +17,7 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import { useNavigate } from 'react-router-dom';
 import UserContext from '../../UserContext'; // Adjust path as needed
-import userService from '../../Services/UserService';
+// import userService from '../../Services/UserService';
 
 // Search component styles
 const Search = styled('div')(({ theme }) => ({
@@ -178,23 +178,23 @@ const AppBar = ( {toggleDrawer} ) => {
   const [searchResults, setSearchResults] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSearchChange = (event) => {
-    setSearchTerm(event.target.value);
-  };
+  // const handleSearchChange = (event) => {
+  //   setSearchTerm(event.target.value);
+  // };
 
-  const handleSearch = async () => {
-    try {
-      setIsLoading(true);
-      const token = localStorage.getItem('token'); // Ensure you have the token
-      const response = await userService.searchFriends(token, searchTerm);
-      setSearchResults(response.data.users); // Access the 'users' key from the response
-    } catch (error) {
-      console.error('Error fetching search results', error);
-      // Handle error appropriately
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  // const handleSearch = async () => {
+  //   try {
+  //     setIsLoading(true);
+  //     const token = localStorage.getItem('token'); // Ensure you have the token
+  //     const response = await userService.searchFriends(token, searchTerm);
+  //     setSearchResults(response.data.users); // Access the 'users' key from the response
+  //   } catch (error) {
+  //     console.error('Error fetching search results', error);
+  //     // Handle error appropriately
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
+  // };
   
 
 
@@ -228,12 +228,13 @@ const AppBar = ( {toggleDrawer} ) => {
         placeholder="Search Friends…"
         inputProps={{ 'aria-label': 'search' }}
         value={searchTerm}
-        onChange={handleSearchChange}
+        // onChange={handleSearchChange}
         onKeyPress={(event) => {
           if (event.key === 'Enter') {
-            handleSearch();
+            // handleSearch();
           }
-        }}
+        }
+      }
       />
       {isLoading && <p>Loading...</p>}
       {/* Render your search results here */}

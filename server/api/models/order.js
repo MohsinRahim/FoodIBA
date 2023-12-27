@@ -1,15 +1,14 @@
 const mongoose = require('mongoose');
 
-const orderItemSchema = new mongoose.Schema({
-    menuItem: { type: mongoose.Schema.Types.ObjectId, ref: 'MenuItem' },
-    quantity: Number,
-});
-
-const OrderItem = mongoose.model('OrderItem', orderItemSchema);
-
 const orderSchema = new mongoose.Schema({
     user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-    items: [orderItemSchema],
+    items: [
+        {
+            menuItem: { type: mongoose.Schema.Types.ObjectId, ref: 'MenuItem' },
+            quantity: Number,
+        }
+    ],
+    restaurant: { type: mongoose.Schema.Types.ObjectId, ref: 'Restaurant' },
     status: { 
         type: String, 
         enum: ['Pending', 'Cancelled', 'Accepted', 'Completed'],
@@ -21,4 +20,4 @@ const orderSchema = new mongoose.Schema({
 
 const Order = mongoose.model('Order', orderSchema);
 
-module.exports = { Order, OrderItem };
+module.exports = { Order };

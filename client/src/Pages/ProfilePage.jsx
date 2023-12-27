@@ -55,7 +55,7 @@
 
 import React, { useState } from 'react';
 import AppBar_material from '../Components/AppBar_Material/AppBar';  // Adjust the path if needed
-import Profile from '../Components/Profile3/Profile';  // Adjust the path if needed
+// import Profile from '../Components/Profile3/Profile';  // Adjust the path if needed
 import UploadImage from '../Components/UploadImage/UploadImage';
 import EmptyBox from '../Components/EmptyBox/EmptyBox';
 import TemporaryDrawer from '../Components/sidebar_material/sidebar';

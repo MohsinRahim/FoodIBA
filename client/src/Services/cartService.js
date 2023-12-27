@@ -19,6 +19,7 @@ export const fetchCart = async () => {
   return response.data;
 };
 
+
 export const clearCart = async () => {
   const headers = {
     'x-auth-token': `${localStorage.getItem('token')}`,
