@@ -8,7 +8,7 @@ import Cart from './Pages/Cart';
 import Checkout from './Pages/Checkout';
 import UserContext from './UserContext';
 
-import History from './Pages/History';
+import History from './Pages/History/History';
 
 import PublicRoute from './Routes/PublicRoute';
 import RestMenu from './Pages/RestMenu/Rest_Menu';

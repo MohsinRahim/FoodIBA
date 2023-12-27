@@ -1,8 +1,10 @@
+// History.jsx
 import React, { useState, useEffect } from 'react';
 import { Container, Typography, Paper, List, ListItem, ListItemText, Divider } from '@mui/material';
-import Header from '../Components/Header/Header';
-import Footer from '../Components/Footer/Footer';
-import Navbar from '../Components/NavBar/Navbar';
+import Header from '../../Components/Header/Header';
+import Footer from '../../Components/Footer/Footer';
+import Navbar from '../../Components/NavBar/Navbar';
+import './History.css'; // Import the CSS file
 
 export default function History() {
   const [orderHistory, setOrderHistory] = useState([]);
@@ -22,19 +24,19 @@ export default function History() {
   return (
     <>
       <Navbar />
-      <Container maxWidth="md" style={{ marginTop: '20px' }}>
-        <Typography variant="h4" gutterBottom align="center">
+      <Container className="history-container" maxWidth="md">
+        <Typography className="history-title" variant="h4" gutterBottom align="center">
           Order History
         </Typography>
         {orderHistory.map((order, index) => (
-          <Paper elevation={3} key={index} style={{ marginBottom: '15px', padding: '15px' }}>
-            <Typography variant="h6" color="secondary">
+          <Paper className="order-paper" elevation={3} key={index}>
+            <Typography className="order-date" variant="h6" color="secondary">
               Date: {order.date}
             </Typography>
-            <List>
+            <List className="order-list">
               {order.items.map((item, itemIndex) => (
                 <React.Fragment key={itemIndex}>
-                  <ListItem>
+                  <ListItem className="order-list-item">
                     <ListItemText primary={item.name} secondary={`Quantity: ${item.quantity}`} />
                   </ListItem>
                   {itemIndex < order.items.length - 1 && <Divider />}
