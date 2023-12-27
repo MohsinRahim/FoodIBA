@@ -36,10 +36,10 @@ export default function Home() {
       <Container maxWidth="lg" className="main-container"> {/* Apply styles */}
         <Box sx={{ my: 4 }}>
           <Typography variant="h4" component="h1" gutterBottom className="main-heading"> {/* Apply styles */}
-            Premium Quality Food for your Healthy & Daily Life
+            Welcome to IBA's one stop food solution - Introducing foodIBA
           </Typography>
           <Typography variant="subtitle1" color="textSecondary" className="subtitle"> {/* Apply styles */}
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sit amet interdum erat.
+            Have a class? feeling hungry? got no time? Don't worry! We got you covered. Order now!
           </Typography>
         </Box>
         <Grid container spacing={4}>
