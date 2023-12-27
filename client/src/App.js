@@ -5,7 +5,7 @@ import ProfilePage from './Pages/ProfilePage/ProfilePage';
 import Home from './Pages/Home/Home';
 import Menu from './Pages/Menu';
 import Cart from './Pages/Cart/Cart';
-import Checkout from './Pages/Checkout';
+import Checkout from './Pages/Checkout/Checkout';
 import UserContext from './UserContext';
 import Confirmation from './Pages/Confirmation/Confirmation';
 
