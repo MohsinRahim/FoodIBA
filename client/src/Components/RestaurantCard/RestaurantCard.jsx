@@ -4,13 +4,13 @@ import React from 'react';
 import { Card, CardContent, CardMedia, Typography, Box, Rating } from '@mui/material';
 import './RestaurantCard.css'; // Import the CSS file
 
-export default function RestaurantCard({ name, image, rating, distance }) {
+export default function RestaurantCard({ name, logo, rating, distance }) {
   return (
     <Card className="restaurant-card"> {/* Apply styles */}
       <CardMedia
         component="img"
         height="140"
-        image={image}
+        image={logo}
         alt={name}
       />
       <CardContent>

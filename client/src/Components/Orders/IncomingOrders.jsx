@@ -1,5 +1,5 @@
 // Components/Orders/IncomingOrders.jsx
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from '@mui/material/Button';
 import { Dialog, DialogTitle, DialogContent, DialogActions, Typography } from '@mui/material';
 import './IncomingOrders.css'; // Import the CSS file
@@ -22,12 +22,18 @@ const IncomingOrders = ({ incomingOrders }) => {
     handleCloseDialog();
   };
 
-  const handleRejectOrder = (orderId) => {
+  const handleRejectOrder = async (orderId) => {
     console.log(`Order ${orderId} rejected`);
+    await updateOrder(orderId, "Cancelled");
+
     handleCloseDialog();
   };
 
+useEffect(() => {
+  console.log("incoming");
   console.log(incomingOrders);
+}
+, [incomingOrders]);
   return (
     <div className="incoming-orders" style={{ position: 'fixed', bottom: 20, right: 20 }}>
       <Button variant="contained" color="primary" onClick={handleOpenDialog}>
@@ -44,7 +50,7 @@ const IncomingOrders = ({ incomingOrders }) => {
             <ul>
               {order.items.map((item) => (
                 <li key={item._id}>
-                  {item.menuItem.name} (Quantity: {item.quantity})
+                  Quantity: {item.quantity}
                 </li>
               ))}
             </ul>

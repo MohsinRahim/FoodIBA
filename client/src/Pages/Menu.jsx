@@ -46,6 +46,10 @@ export default function Menu() {
   // }, [restaurantId]);
 
   const handleAddToCartClick = async (item) => {
+    if(localStorage.getItem('token') === null){
+      window.alert('Please Login First');
+      return;
+    }
     const existingCart = await fetchCart();
 
     if (existingCart.items.length > 0 && existingCart.items[0].menuItem.restaurant !== restaurantId) {
@@ -66,7 +70,12 @@ export default function Menu() {
 
   const handleAddToCartConfirm = async (quantity, specialInstructions) => {
     console.log('Add to cart:', selectedItem, quantity, specialInstructions);
-    await addToCart(selectedItem._id, quantity); // Assuming the quantity is 1 for simplicity
+    if(localStorage.getItem('token') === null){
+      window.alert('Please Login First');
+      return;
+    } else {
+      await addToCart(selectedItem._id, quantity); // Assuming the quantity is 1 for simplicity
+    }
     setDialogOpen(false);
   };
 
@@ -99,7 +108,7 @@ return (
   <>
       <Navbar />
       <Container maxWidth="md">
-          {restaurant && <MenuHeader name={restaurant.name} image={restaurant.image} />}
+          {restaurant && <MenuHeader name={restaurant.name} image={restaurant.logo} />}
           {menuItems.map((item, index) => (
               <React.Fragment key={index}>
                   <Typography variant="h5" gutterBottom>

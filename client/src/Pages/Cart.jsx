@@ -19,9 +19,14 @@ export default function Cart() {
   useEffect(() => {
     const loadCart = async () => {
       try {
-        const { items } = await fetchCart();
+        if(localStorage.getItem('token') === null){
+          alert('Please login first');
+          return;
+        } else{
+          const { items } = await fetchCart();
+          setCartItems(items);
+        }
         // Assume each cart item has menuItem data embedded in it
-        setCartItems(items);
       } catch (error) {
         console.error('Error fetching cart:', error);
       }
