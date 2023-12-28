@@ -5,6 +5,22 @@ const bcrypt = require('bcryptjs');
 const { User, validate } = require("../models/user");
 const authenticate = require('../middleware/authenticate');
 
+// New route to get user's first name by ID
+router.get('/getFirstName/:userId', async (req, res) => {
+    try {
+        const userId = req.params.userId;
+        const user = await User.findById(userId);
+
+        if (!user) {
+            return res.status(404).send({ message: 'User not found' });
+        }
+
+        res.send({ firstName: user.firstName });
+    } catch (error) {
+        res.status(500).send({ message: 'Internal Server Error' });
+    }
+});
+
 
 router.post("/", async (req, res) => {
 	try {
