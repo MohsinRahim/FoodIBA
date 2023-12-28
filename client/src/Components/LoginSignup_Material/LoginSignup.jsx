@@ -32,9 +32,13 @@ export default function LoginSignup({ loading, error, onLogin, onSignup }) {
       if (responseData.message === 'logged in successfully') {
         localStorage.setItem('token', responseData.data.token);
         localStorage.setItem('role', responseData.data.role);
-
+        if(responseData.data.role === 'restaurant owner'){
+          navigate('/orders');
+        } else {
+          navigate('/home');
+        }
         console.log("Received ", responseData);
-        navigate('/home');
+        
       } else {
         window.alert('Login Failed');
       }
