@@ -17,7 +17,7 @@ import UserContext from '../../UserContext';
 import { useNavigate } from 'react-router-dom';
 import { login, signup } from '../../Services/userServicetest';
 //import myLocalImage from '../LoginSignup_Material/picture_gpt.png';
-import myLocalImage from '../Assets/picture_gpt.png'
+import myLocalImage from '../Assets/iba.jpg'
 import { Radio, RadioGroup } from '@mui/material';
 //check
 const defaultTheme = createTheme();
