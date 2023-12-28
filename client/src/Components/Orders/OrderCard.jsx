@@ -55,7 +55,8 @@ useEffect(() => {
 return (
   <div className={`order-card ${status === 'Accepted' ? 'Accepted' : ''}`}>
     <p className="order-id">Order ID: {_id}</p>
-    {/* <p className="order-name">Name: {name}</p> */}
+  
+    <p className="order-name">Name: {order.user}</p>
     <p className="order-items">Items: {renderItemsList(items)}</p>  
     <p className="order-prices">Prices: {renderPricesList(items)}</p>  
     <p className="order-total">Total Bill: ${totalBill.toFixed(2)}</p>

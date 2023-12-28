@@ -50,7 +50,7 @@ export default function Checkout() {
     console.log(data);
     const response = await createOrder(data);
     if(response.status === 201) {
-      alert("Order placed successfully");
+      alert("Order placed successfully - Please collect in 15 minutes!");
       clearCart();
       navigate('/home');
     }
