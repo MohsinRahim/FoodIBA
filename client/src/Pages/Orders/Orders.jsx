@@ -25,27 +25,56 @@ const Orders = () => {
     { id: 7, name: 'Sam Johnson', items: ['Pasta', 'Garlic Bread'], amount: 18.75, time: '5:15 PM' },
     { id: 8, name: 'Emma Wilson', items: ['Sushi', 'Miso Soup'], amount: 30.00, time: '6:30 PM' },
   ];
+  const [activeOrders, setActiveOrders] = useState([]);
+  const [completedOrders, setCompletedOrders] = useState([]);
+  const [pendingOrders, setPendingOrders] = useState([]);
+  const [cancelledOrders, setCancelledOrders] = useState([]);
 
-  const [activeOrders, setActiveOrders] = useState("");
-  const [completedOrders, setCompletedOrders] = useState("");
-  const [pendingOrders, setPendingOrders] = useState("");
+  const [activeOrdersUser, setActiveOrdersUser] = useState([]);
+  const [completedOrdersUser, setCompletedOrdersUser] = useState([]);
+  const [pendingOrdersUser, setPendingOrdersUser] = useState([]);
+  const [cancelledOrdersUser, setCancelledOrdersUser] = useState([]);
 
+  const [orders, setOrders] = useState([]);
+  
   useEffect(() => {
-    getOrders().then((response) => {  
-      console.log(response.data);
-      // setActiveOrders(response.data);
-    });
+    const fetchOrders = async () => {
+      try {
+        const res = await getOrders();
+        const allOrders = res.data.orders;
+        
+        // Filter orders by status
+        const active = allOrders.filter(order => order.status === "Accepted");
+        const completed = allOrders.filter(order => order.status === "Completed");
+        const pending = allOrders.filter(order => order.status === "Pending");
+        const cancelled = allOrders.filter(order => order.status === "Cancelled");
+  
+        
+
+        // Update state
+        setOrders(allOrders);
+        setActiveOrders(active);
+        setCompletedOrders(completed);
+        setPendingOrders(pending);
+        setCancelledOrders(cancelled);
+      } catch (err) {
+        console.error(err);
+        // Handle error here
+      }
+    };
+  
+    fetchOrders();
   }, []);
-   
+
   return (
     <div className="orders-page">
       <Navbar />
       <h1>Orders Page</h1>
       <div className="orders-container">
-        <ActiveOrders activeOrders={dummyActiveOrders} />
-        <CompletedOrders completedOrders={dummyCompletedOrders} />
+        <ActiveOrders activeOrders={activeOrders} />
+        {/* <CompletedOrders completedOrders={completedOrders} /> */}
       </div>
-      <IncomingOrders incomingOrders={dummyIncomingOrders} />
+      <IncomingOrders incomingOrders={pendingOrders} />
     </div>
   );
 };

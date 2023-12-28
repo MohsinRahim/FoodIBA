@@ -78,10 +78,10 @@ router.get('/:token', async (req, res) => {
     const user = await User.findById(userID);
 
     const restaurant = await Restaurant.findOne({ email: user.email });
-    console.log(restaurant);
+
     if(restaurant){
         const menuItems = await MenuItem.find({ restaurant: restaurant._id });
-        console.log(menuItems);
+
         res.status(200).json(menuItems);
     } else{
         res.status(404).json({ error: 'Restaurant not found' });

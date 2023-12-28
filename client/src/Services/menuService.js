@@ -29,3 +29,21 @@ export const fetchMenuItemsByOwner = async () => {
     throw error.response.data.message;
   }
 };
+
+export const createMenuItem = async (menuItemDetails) => {
+  const token = localStorage.getItem('token');
+  const headers = {
+    'x-auth-token': `${token}`,
+  };
+  const response = await API.post('/api/menuItems', menuItemDetails , { headers } );
+  return response;
+}
+
+export const deleteMenuItem = async (id) => {
+  const token = localStorage.getItem('token');
+  const headers = {
+    'x-auth-token': `${token}`,
+  };
+  const response = await API.delete('/api/menuItems/' + id, { headers } );
+  return response;
+}

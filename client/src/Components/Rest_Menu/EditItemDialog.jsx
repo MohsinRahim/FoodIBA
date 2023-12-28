@@ -12,8 +12,12 @@ import {
 const EditItemDialog = ({ open, handleClose, handleSubmit, currentItem }) => {
   const [name, setName] = useState(currentItem ? currentItem.name : '');
   const [price, setPrice] = useState(currentItem ? currentItem.price : '');
+  const [category, setCategory] = useState(currentItem ? currentItem.category : '');
   const [description, setDescription] = useState(
     currentItem ? currentItem.description : ''
+  );
+  const [restaurantId, setRestaurant] = useState(
+    localStorage.getItem('restaurantId')
   );
 
   const handleFormSubmit = () => {
@@ -24,7 +28,7 @@ const EditItemDialog = ({ open, handleClose, handleSubmit, currentItem }) => {
     }
 
     // Call the parent component's submit function
-    handleSubmit({ name, price, description });
+    handleSubmit({ name, price, description, category, restaurantId });
   };
 
   return (
@@ -42,6 +46,12 @@ const EditItemDialog = ({ open, handleClose, handleSubmit, currentItem }) => {
           type="number"
           value={price}
           onChange={(e) => setPrice(e.target.value)}
+          fullWidth
+        />
+        <TextField
+          label="Category"
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
           fullWidth
         />
         <TextField

@@ -4,6 +4,8 @@ import OrderCard from './OrderCard';
 import './ActiveOrders.css'; // Import the CSS file
 
 const ActiveOrders = ({ activeOrders }) => {
+  console.log("active");
+  console.log(activeOrders);
   return (
     <div className="active-orders">
       <h2>Active Orders</h2>

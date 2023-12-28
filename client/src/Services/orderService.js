@@ -16,7 +16,16 @@ export const getOrders = async () => {
     const headers = {
       'x-auth-token': `${token}`,
     };
-    const response = await API.get('/api/orders/' + token, { headers } );
+    const response = await API.get('/api/orders/' + localStorage.getItem('restaurantId'), { headers } );
     return response;
 };
   
+
+export const updateOrder = async (orderId, status) => {
+  const token = localStorage.getItem('token');
+  const headers = {
+    'x-auth-token': `${token}`,
+  };
+  const response = await API.put('/api/orders/' + orderId, {status}, { headers } );
+  return response;
+};

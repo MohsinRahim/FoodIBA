@@ -14,7 +14,7 @@ router.post('/', authenticate, async (req, res) => {
     if (!decodedToken) {
         return res.status(401).json({ error: 'You must be logged in to place an order' });
     }
-    console.log(await req.body);
+
     const userId = decodedToken._id;
     const body = req.body;
     const newOrder = new Order({
@@ -32,6 +32,30 @@ router.post('/', authenticate, async (req, res) => {
         res.status(500).json({ error: 'Internal server error' });
     }
 });
+
+// Get all orders by user
+router.get('/:restaurantId', authenticate, async (req, res) => {
+    try {
+        const orders = await Order.find({ restaurant: req.params.restaurantId }).populate('items.menuItem');
+        var response = {
+            orders: [],
+            users: []
+        };
+
+        // Use a for...of loop to ensure that async operations complete in order
+        for (const order of orders) {
+            const user = await User.findById(order.user);
+            response.orders.push(order);
+            response.users.push(user);
+        }
+
+        res.status(200).json(response);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
 
 // // Get orders for a user with user details
 // router.get('/', authenticate, async (req, res) => {
@@ -70,7 +94,7 @@ router.get('/', authenticate, async (req, res) => {
 });
 
 // Update order status
-router.put('/:orderId', authenticate, async (req, res) => {
+router.put('/:orderId', async (req, res) => {
     const { orderId } = req.params;
     const { status } = req.body;
 
