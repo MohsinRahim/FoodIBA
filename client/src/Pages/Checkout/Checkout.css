@@ -1,0 +1,36 @@
+/* Checkout.css */
+.checkout-container {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-top: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  .checkout-container:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .checkout-container h4 {
+    color: #333;
+  }
+  
+  .checkout-container button {
+    margin-top: 10px;
+    background-color: maroon; /* Set the background color to maroon */
+    color: #fff; /* Set the text color to white */
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  

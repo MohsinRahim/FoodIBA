@@ -1,18 +1,19 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
-import LoginPage from './Pages/LoginPage';
-import ProfilePage from './Pages/ProfilePage';
-import Home from './Pages/Home';
+import LoginPage from './Pages/LoginPage/LoginPage';
+import ProfilePage from './Pages/ProfilePage/ProfilePage';
+import Home from './Pages/Home/Home';
 import Menu from './Pages/Menu';
-import Cart from './Pages/Cart';
-import Checkout from './Pages/Checkout';
+import Cart from './Pages/Cart/Cart';
+import Checkout from './Pages/Checkout/Checkout';
 import UserContext from './UserContext';
+import Confirmation from './Pages/Confirmation/Confirmation';
 
-import History from './Pages/History';
+import History from './Pages/History/History';
 
 import PublicRoute from './Routes/PublicRoute';
-import RestMenu from './Pages/Rest_Menu';
-import Orders from './Pages/Orders';
+import RestMenu from './Pages/RestMenu/Rest_Menu';
+import Orders from './Pages/Orders/Orders';
 import RestaurantCard from './Components/RestaurantCard/RestaurantCard';
 import MenuItem from './Components/Menu/MenuItem';
 
@@ -47,6 +48,12 @@ function App() {
             path="/restmenu"
             element={
                 <RestMenu />
+            } 
+          />
+          <Route 
+            path="/confirmation"
+            element={
+                <Confirmation />
             } 
           />
 

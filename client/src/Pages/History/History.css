@@ -1,0 +1,27 @@
+/* History.css */
+
+.history-container {
+    margin-top: 20px;
+  }
+  
+  .history-title {
+    margin-bottom: 20px;
+  }
+  
+  .order-paper {
+    margin-bottom: 15px;
+    padding: 15px;
+  }
+  
+  .order-date {
+    color: #f50057; /* Use your preferred secondary color */
+  }
+  
+  .order-list-item {
+    /* Add styles for list items if needed */
+  }
+  
+  .order-list-item + hr {
+    margin-top: 8px; /* Adjust spacing between list items and divider */
+  }
+  

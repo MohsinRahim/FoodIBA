@@ -1,0 +1,36 @@
+/* Add global styles for the page if needed */
+
+.confirmationPage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f9f9f9; /* Light background color for the entire page */
+  }
+  
+  /* Add any additional styles for Navbar if needed */
+  
+  .announcement {
+    font-size: 36px;
+    font-weight: bold;
+    text-decoration: underline;
+    color: #2196f3; /* Blue color for the announcement message */
+    margin-bottom: 30px;
+  }
+  
+  .orderDetailsContainer {
+    animation: fadeInUp 0.8s ease-out; /* Custom fadeInUp animation */
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  

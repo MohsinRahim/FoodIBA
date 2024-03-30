@@ -1,0 +1,15 @@
+/* Components/Orders/IncomingOrders.css */
+
+.incoming-orders {
+    /* Add specific styles as needed */
+  }
+  
+  .incoming-orders .MuiButton-root {
+    background-color: var(--maroon-color);
+    color: var(--white-color);
+  }
+  
+  .incoming-orders .order-count {
+    color: var(--white-color);
+  }
+  

@@ -1,40 +1,58 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import LoginSignup from '../Components/LoginSignup_Material/LoginSignup';
-import { login, signup } from '../Services/userServicetest';
+import LoginSignup from '../../Components/LoginSignup_Material/LoginSignup';
+import { login, signup } from '../../Services/userServicetest';
+import './LoginPage.css'; // Import the CSS file
 
 const LoginPage = () => {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const handleSignup = async (userData) => {
     try {
+      setLoading(true);
       await signup(userData);
-      // Redirect or show success message
+      window.alert('Signup successful. Please login.');
+      navigate('/login');
     } catch (error) {
-      console.error('Signup Error:', error.response.data.message);
-      // Handle signup error
+      console.error('Signup Error:', error.response ? error.response.data.message : error.message);
+      setError('Signup failed. Please try again.');
+    } finally {
+      setLoading(false);
     }
   };
 
   const handleLogin = async (credentials) => {
     try {
+      setLoading(true);
       const { token } = await login(credentials);
       localStorage.setItem('token', token);
-      navigate('/profile'); // Redirect to profile or another page
+      navigate('/profile');
     } catch (error) {
-      console.error('Login Error:', error.response.data.message);
-      // Handle login error
+      console.error('Login Error:', error.response ? error.response.data.message : error.message);
+      setError('Login failed. Please check your credentials.');
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <div>
-      <LoginSignup onSignup={handleSignup} onLogin={handleLogin} />
+    <div className="login-container"> {/* Apply the container class */}
+      <LoginSignup
+        onSignup={handleSignup}
+        onLogin={handleLogin}
+        loading={loading}
+        error={error}
+      />
     </div>
   );
 };
 
 export default LoginPage;
+
+
+
 
 
 // import React from 'react';

@@ -22,7 +22,7 @@ import { Radio, RadioGroup } from '@mui/material';
 //check
 const defaultTheme = createTheme();
 
-export default function LoginSignup() {
+export default function LoginSignup({ loading, error, onLogin, onSignup }) {
   const navigate = useNavigate();
   const [action, setAction] = useState("Login");
 
@@ -192,9 +192,15 @@ export default function LoginSignup() {
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
+                disabled={loading}
               >
-                {action === "Login" ? "Sign In" : "Sign Up"}
+                {loading ? 'Loading...' : action === 'Login' ? 'Sign In' : 'Sign Up'}
               </Button>
+              {error && (
+                <Typography variant="body2" color="error" align="center" sx={{ mb: 2 }}>
+                  {error}
+                </Typography>
+              )}
               <Grid container>
                 <Grid item xs>
                   <Link href="#" variant="body2">

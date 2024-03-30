@@ -1,0 +1,65 @@
+/* ProfilePage.css */
+
+.profile-page-container {
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .profile-page-container:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .upload-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin: 50px;
+    transition: margin 0.3s ease-in-out;
+  }
+  
+  .upload-container:hover {
+    margin: 40px;
+  }
+  
+  .upload-card {
+    width: 100%;
+    height: auto;
+    border: 2px dashed #999;
+    border-radius: 8px;
+    background-color: #f8f8f8;
+    padding: 10px;
+    box-sizing: border-box;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .upload-card:hover {
+    transform: scale(1.05);
+  }
+  
+  .upload-text {
+    font-weight: bold;
+    font-size: 16px;
+    color: #333;
+    margin-top: 16px;
+    transition: color 0.3s ease-in-out;
+  }
+  
+  .upload-card:hover .upload-text {
+    color: #007bff;
+  }
+  
+  .upload-instructions {
+    font-size: 12px;
+    color: #999;
+    margin-top: 8px;
+    transition: color 0.3s ease-in-out;
+  }
+  
+  .upload-card:hover .upload-instructions {
+    color: #777;
+  }
+  

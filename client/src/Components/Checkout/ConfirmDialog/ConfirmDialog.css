@@ -1,0 +1,16 @@
+/* ConfirmDialog.css */
+.dialog-title {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .dialog-content {
+    color: #555;
+  }
+  
+  .dialog-button {
+    /* Add your button styles */
+  }
+  
+  /* Add more styles as needed */
+  

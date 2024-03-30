@@ -1,0 +1,27 @@
+/* Components/Orders/OrderCard.css */
+
+.order-card {
+    border: 1px solid var(--maroon-color);
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: var(--white-color);
+  }
+  
+  .order-card.active {
+    background-color: #e6ffe6; /* Light green for active orders */
+  }
+  
+  .order-card p {
+    margin: 5px 0;
+    color: var(--maroon-color);
+  }
+  
+  .order-card .MuiButton-root {
+    margin-top: 10px;
+  }
+  
+  .complete-button {
+    background-color: var(--maroon-color);
+    color: var(--white-color);
+  }
+  

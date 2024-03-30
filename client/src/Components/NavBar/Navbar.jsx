@@ -1,3 +1,4 @@
+// Components/NavBar/Navbar.jsx
 import React, { useState, useEffect } from 'react';
 import { AppBar, Toolbar, IconButton, Typography, Button, InputBase, Box } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
@@ -48,7 +49,11 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function Navbar() {
+const StyledAppBar = styled(AppBar)({
+  backgroundColor: '#800000', /* Maroon background */
+});
+
+const Navbar = () => {
   const navigate = useNavigate();
   const [token, setToken] = useState(null);
   const [role, setRole] = useState(null);
@@ -93,31 +98,33 @@ export default function Navbar() {
   }, []);
 
   return (
-    <AppBar position="static">
+    <StyledAppBar position="static">
       <Toolbar>
-        {role === 'restaurant owner' ? ( // Check the user's role
+        {role === 'restaurant owner' ? (
           <>
-          <IconButton color="inherit" aria-label="history" onClick={handleHistoryClick}>
-            <RestoreIcon />
-          </IconButton>
-          <IconButton color="inherit" aria-label="orders" onClick={handleOrderClick}>
-            <ReorderIcon />
-          </IconButton>
-          <IconButton color="inherit" aria-label="restmenu" onClick={handleRestMenuClick}>
-            <RestaurantMenuIcon />
-          </IconButton>
+            <IconButton color="inherit" aria-label="history" onClick={handleHistoryClick}>
+              <RestoreIcon />
+            </IconButton>
+            <IconButton color="inherit" aria-label="orders" onClick={handleOrderClick}>
+              <ReorderIcon />
+            </IconButton>
+            <IconButton color="inherit" aria-label="restmenu" onClick={handleRestMenuClick}>
+              <RestaurantMenuIcon />
+            </IconButton>
           </>
-        ) : <>
-          <IconButton edge="start" color="inherit" aria-label="home" onClick={handleHomeClick}>
-            <HomeIcon />
-          </IconButton>
-          <IconButton color="inherit" aria-label="cart" onClick={handleCartClick}>
-            <ShoppingCartIcon />
-          </IconButton>
-          <IconButton color="inherit" aria-label="account" onClick={handleProfileClick}>
-            <AccountCircleIcon />
-          </IconButton>
-        </>}
+        ) : (
+          <>
+            <IconButton edge="start" color="inherit" aria-label="home" onClick={handleHomeClick}>
+              <HomeIcon />
+            </IconButton>
+            <IconButton color="inherit" aria-label="cart" onClick={handleCartClick}>
+              <ShoppingCartIcon />
+            </IconButton>
+            <IconButton color="inherit" aria-label="account" onClick={handleProfileClick}>
+              <AccountCircleIcon />
+            </IconButton>
+          </>
+        )}
         <Search>
           <SearchIconWrapper>
             <SearchIcon />
@@ -132,6 +139,8 @@ export default function Navbar() {
           <Button color="inherit" onClick={handleLoginClick}>Login</Button>
         ) : <Button color="inherit" onClick={handleLogOutClick}>Log Out</Button>}
       </Toolbar>
-    </AppBar>
+    </StyledAppBar>
   );
-}
+};
+
+export default Navbar;

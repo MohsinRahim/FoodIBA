@@ -1,0 +1,32 @@
+/* VoucherDialog.css */
+.voucher-dialog {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    animation: fadeIn 0.3s ease-in-out;
+  }
+  
+  .voucher-input {
+    margin-bottom: 15px;
+  }
+  
+  .voucher-button {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  .voucher-button:hover {
+    background-color: #0056b3;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
