@@ -1,0 +1,54 @@
+.orderDetailsContainer {
+    background-color: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  
+  .confirmationMessage {
+    font-size: 32px;
+    font-weight: bold;
+    text-decoration: underline;
+    margin-bottom: 16px;
+    animation: fadeInUp 0.8s ease-out;
+  }
+  
+  .orderDetailsBox {
+    background-color: #e0e0e0;
+    width: 80%;
+    border: 1px solid #ccc;
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    animation: fadeInUp 0.8s ease-out;
+  }
+  
+  .detailItem {
+    margin-bottom: 20px;
+    font-size: 20px;
+  }
+  
+  .detailItem strong {
+    font-weight: bold;
+    margin-right: 8px;
+  }
+  
+  .time {
+    font-size: 28px;
+    margin-bottom: 16px;
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
